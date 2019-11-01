@@ -1,12 +1,13 @@
 <template>
-    <div class="osl">
-        int sad
+    <div >
+        sadadasda
     </div>
+
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "About"
     }
 </script>
 
