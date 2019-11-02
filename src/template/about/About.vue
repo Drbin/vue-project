@@ -1,6 +1,6 @@
 <template>
-    <div >
-        sadadasda
+    <div class="about-box" >
+       <el-button>开始</el-button>
     </div>
 
 </template>
