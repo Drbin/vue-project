@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/template/index/Index'
+import Exam from '@/template/exam/Index'
 import About from '@/template/about/About'
 
 
@@ -17,6 +18,12 @@ export default new Router({
             path:'/about',
             name:'About',
             component:About
+
+        },
+        {
+            path:'/exam',
+            name:'Exam',
+            component:Exam
 
         },
     ]
