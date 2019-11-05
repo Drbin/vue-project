@@ -4,9 +4,8 @@
       <router-link to="/">首页</router-link>
       <router-link to="/about">关于</router-link>
     </div>
-    <div>
-      <router-view></router-view>
-
+    <div class="main">
+      <router-view ></router-view>
     </div>
   </div>
 </template>
@@ -28,6 +27,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
 }
+.top{
+  height: 70px;
+  line-height: 70px;
+  float: left;
+  width: 100%;
+
+}
+.top a{ color: #666; margin: 0 10px; font-size:14px ; text-decoration: none;}
+.top a.router-link-exact-active{color: #409eff}
+.main{ width: 100%; float: left;}
 </style>
