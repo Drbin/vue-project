@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/template/index/Index'
 import Exam from '@/template/exam/Index'
-import About from '@/template/about/About'
+import About from '@/template/about/Index'
 
 
 Vue.use(Router)
