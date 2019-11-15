@@ -7,49 +7,12 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-project</title>
   </head>
-  <body style="background: #454545;">
+  <body >
     <noscript>
       <strong>We're sorry but vue-project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <canvas id="id" width="230px" height="60px;"></canvas>
-    <script>
-        var sign =
-            `<div class="carrier_box" id="carrierBox">
-            <div class="top">
-                <div class="carrier_num">
-                    12 08b4b8 76c19f 3468bc 6ec2d9
-                </div>
-                <div class="carrier_txt">
-                    <canvas id="id"  width="188px" height="16px;"></canvas>
-                </div>
-            </div>
-            <div class="bottom"></div>
-            </div>`
-        document.getElementById("app").appendChild=sign;
-        var txt="27号楼"
-        var num1=2000;
-        var num2=100;
-        var context = document.getElementById("id").getContext("2d");
-        var linearGradient1 = context.createLinearGradient(0, 0, 180,180);
-        linearGradient1.addColorStop(0, '#3468bc');
-        linearGradient1.addColorStop(1, '#6ec1d9');
-        context.fillStyle = linearGradient1;
-        for(var i=0;i<20;i++){
 
-
-            if(i===0){
-                context.fillRect(0, 0 ,5,16)
-
-            }else{
-                context.fillRect((i*7), 0 ,5,16)
-            }
-        }
-
-
-
-
-    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
