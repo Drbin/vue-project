@@ -4,6 +4,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Col,Row,Button,Link,Submenu,MenuItem,MenuItemGroup,Menu} from 'element-ui'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -15,7 +18,8 @@ Vue.component(Submenu.name ,Submenu)
 Vue.component(MenuItem.name ,MenuItem)
 Vue.component(MenuItemGroup.name ,MenuItemGroup)
 Vue.component(Menu.name ,Menu)
-
+Vue.prototype.$http = axios
+Vue.use(VueAxios,axios)
 new Vue({
   render: h => h(App),
   router,
