@@ -4,7 +4,6 @@ import Index from '@/template/index/Index'
 import Exam from '@/template/exam/Index'
 import About from '@/template/about/Index'
 import Vote from '@/template/vote/Index'
-import Menu from '@/template/menu/Index'
 
 
 Vue.use(Router)
@@ -32,11 +31,6 @@ export default new Router({
             name:'Vote',
             component:Vote
 
-        },{
-            path:'/Menu',
-            name:'Menu',
-            component:Menu
-
-        },
+        }
     ]
 })
