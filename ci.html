@@ -11,7 +11,7 @@
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
 </head>
 <body>
-<div id="hotMap" style="width: 400px; height: 300px;" ></div>
+<div id="hotMap" style="width: 400px; height: 262px;" ></div>
 
 <script>
     $.ajax({
@@ -20,54 +20,109 @@
         data:{date:"2019-11-25" },
         dataType:'json',
         success:function (res) {
-            console.log(res)
             hotMap(res)
         }
     })
 function hotMap(d) {
     var hours =d.data.item;
     var days = d.data.yItem;
-
     var data = d.data.data;
-
-
-    option = {
+    console.log(days)
+    var color=  [
+        '#22DDDD', '#fec42c', '#80F1BE'
+    ];
+    let option = {
+        dataZoom: [
+            {
+                type: 'inside',
+            },
+        ],
+        backgroundColor: '',
         tooltip: {
-            position: 'top'
+            position: 'top',
+            formatter:function(param){
+                return "点击量"+param.value[2];
+            }
         },
         animation: false,
         grid: {
-            height: '50%',
-            y: '10%'
+            top: '0',
+            left: '35',
+            right: '0',
+            bottom: '23',
         },
         xAxis: {
             type: 'category',
             data: hours,
             splitArea: {
                 show: true
-            }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
+                }
+            },
+            axisTick: {
+                show: false,
+                color: '#fff'
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#fff'
+                }
+            }, axisLabel: {
+                margin: 10,
+                color: '#9aa2aa',
+                textStyle: {
+                    fontSize: 14
+                },
+            },
         },
         yAxis: {
             type: 'category',
             data: days,
             splitArea: {
                 show: true
-            }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: '#fff',
+                }
+            },
+            axisTick: {
+                show: true,
+                lineStyle: {
+                    color: '#fff'
+                }
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: "#9ba2aa"
+                }
+            },
         },
         visualMap: {
             min: 0,
-            max: 10,
-            show:false,
-            calculable: false,
+            max: 500000,
+            calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '15%'
+            bottom: '15%',
+            show: false,
+            color:['#3a71bf','#6ec1d9']
         },
         series: [{
-            name: 'Punch Card',
+            name: '',
             type: 'heatmap',
             data: data,
-
+            label: {
+                normal: {
+                    show: false
+                }
+            },
             itemStyle: {
                 emphasis: {
                     shadowBlur: 10,
