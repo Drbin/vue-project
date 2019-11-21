@@ -3,23 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        *{margin: 0;padding: 0;}
-        body,html{ width: 100%; height: 100%;}
-    </style>
+
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
     <script src="http://202.85.223.75:8090/zpark/lib/echarts-wordcloud.min.js"></script>
     <script src="http://202.85.223.75:8090/zpark/js/map/china.js"></script>
     <script src="http://202.85.223.75:8090/zpark/js/map/world.js"></script>
     <script src="http://202.85.223.75:8090/zpark/js/map/all-province.js"></script>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        body,html{ width: 100%; height: 100%;}
+        .allDiv{ width: 100%; height: 100%; background-image: url("bg_temp.png");background-size: 100%; background-repeat: no-repeat; position: absolute; z-index:999 !important;box-sizing: border-box; padding: 50px 50px 140px 50px; }
+        .topFiveDiv{ width: 100%; height: 280px;  float:left; }
+        .topFiveDiv .listDiv{ width: 20%; height: 280px; float: left; box-sizing: border-box; padding: 10px;}
+        .listDivInner{ width: 100%; height: 200px;float: left;}
+        .botDiv{ width: 100%; height: 500px; float: left;}
+        .botDiv .twoDiv{ width: 50%; height: 100%; padding: 50px; box-sizing: border-box; float: left;}
+        .flagMap{ width: 100%; height: 100%; float: left; border:1px solid rgba(244,244,244,.3); background-color: rgba(255,255,255,.1)}
+
+    </style>
 </head>
 <body>
-<div id="hotMap" style="width: 400px; height: 262px; float: left;" ></div>
-<div id="keywords" style="width: 400px; height: 262px;float: left;" ></div>
-<div id="createFrom" style="width: 400px; height: 262px;float: left;" ></div>
-<div id="createChinaMap" style="width: 1000px; height: 400px;float: left;"></div>
-<div id="createWorldMap" style="width: 1000px; height: 400px;float: left;"></div>
+<div class="allDiv">
+    <div class="topFiveDiv">
+        <div class="listDiv">
+            <div id="hotMap" class="listDivInner"></div>
+        </div>
+        <div class="listDiv">
+            <div id="keywords" class="listDivInner"></div>
+        </div>
+        <div class="listDiv">
+            <div id="lineBox" class="listDivInner"></div>
+        </div>
+        <div class="listDiv">
+            <div id="createAction" class="listDivInner"></div>
+        </div>
+        <div class="listDiv">
+            <div id="createFrom" class="listDivInner"></div>
+        </div>
+
+    </div>
+    <div class="botDiv">
+        <div class="twoDiv">
+            <div id="createChinaMap" class="flagMap"></div>
+        </div>
+        <div class="twoDiv">
+            <div id="createWorldMap" class="flagMap"></div>
+        </div>
+    </div>
+
+</div>
+
 
 
 
@@ -65,24 +100,216 @@
             createFrom(res.data)
         }
     })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/HumanityController/getBehaviorAnalysisDistribution',
+        type:'GET',
+        dataType:'json',
+        data:{'type':'pv'},
+        success:function (res) {
+            createAction(res.data)
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/HumanityController/getVisitTypeTimeCountLine',
+        type:'GET',
+        dataType:'json',
+        data:{'type':'pv'},
+        success:function (res) {
+            console.log(res)
+            lineBox(res.data)
+        }
+    })
     var colors=[
-        "#ff4b4f",
-        "#7d6dff",
-        "#f37070",
-        "#6d85ff",
-        "#ffac29",
-        "#a46dff",
-        "#ffcc29",
-        "#96cc48",
-        "#5797fc",
-        "#4ecc48",
-        "#E43C59",
-        "#61a0a8",
-        "#37A2DA",
-        "#bda29a",
-        "#4BABDE",
-        "#ca8622",
+        "#20e49f",
+        "#0bc785",
+        "#5cc3f0",
+        "#4189a9",
+        "#28a9e1",
+        "#6690f2",
+        "#0d6a92",
+        "#3469e4",
+        "#4866ab",
+
     ]
+    function lineData(data) {
+        var obj=[];
+        for (var i=0; i<data.length;i++){
+            obj.push( {
+                name:data[i].name,
+                type:'line',
+                stack: '总量',
+                symbol: "none",
+                data:data[i].value
+            },)
+
+        }
+        return obj
+
+    }
+    function lineBox(data) {
+        option = {
+            backgroundColor:'rgba(255,255,255,.1)',
+            tooltip: {
+                trigger: 'axis',
+                position: function(point, params, dom, rect, size){
+                    //其中point为当前鼠标的位置，size中有两个属性：viewSize和contentSize，分别为外层div和tooltip提示框的大小
+                    var x = point[0];//
+                    var y = point[1];
+                    var viewWidth = size.viewSize[0];
+                    var viewHeight = size.viewSize[1];
+                    var boxWidth = size.contentSize[0];
+                    var boxHeight = size.contentSize[1];
+                    var posX = 0;//x坐标位置
+                    var posY = 0;//y坐标位置
+
+                    if(x<boxWidth){//左边放不开
+                        posX = 5;
+                    }else{//左边放的下
+                        posX = x-boxWidth;
+                    }
+
+                    if(y<boxHeight){//上边放不开
+                        posY = 5;
+                    }else{//上边放得下
+                        posY = y-boxHeight;
+                    }
+
+                    return [posX,posY];
+
+                }
+
+
+            },
+            color:colors,
+            legend: {
+                show:false,
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+
+                },
+                axisLabel: {
+                    margin: 10,
+
+                    color: '#fff',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+                data: data.item
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisLabel: {
+                    color: '#fff',
+                    formatter:function(value){
+                        return (value/10000).toFixed(0)+'w'
+                    },
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+            },
+            series:lineData(data.data)
+        };
+        var myChart = echarts.init(document.getElementById('lineBox'));
+        myChart.setOption(option);
+
+    }
+    function createAction(data) {
+        let option = {
+            color: colors,
+            backgroundColor: '',
+            tooltip: {
+                trigger: 'item',
+                formatter: "{b}<br/>访问频次: {c}"
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            grid: {
+                left: '0',
+                right: '0',
+                top: '0',
+                bottom: '0',
+                containLabel: true
+            },
+            calculable: false,
+            series: [
+                {
+                    name: '使用',
+                    type: 'treemap',
+                    breadcrumb: {
+                        show: false,
+                    },
+                    nodeClick: false,
+                    roam: false,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,
+                                formatter: "{b}"
+                            },
+                        },
+                        emphasis: {
+                            label: {
+                                show: true
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById('createAction'));
+        myChart.setOption(option);
+
+    }
     function createWorldMap(data) {
         let option = {
             color: colors,
@@ -93,6 +320,7 @@
             visualMap: {
                 max: 8000,
                 calculable: true,
+                show:false,
                 colorLightness: [0.2, 100],
                 color: [colors[0], colors[3], colors[6]],
                 dimension: 0
@@ -128,6 +356,8 @@ function createChinaMap(data) {
         visualMap: {
             max: 1000000,
             calculable: true,
+            show:false,
+
             colorLightness: [0.2, 100],
             color: [colors[0], colors[1], colors[6]],
             dimension: 0
@@ -197,9 +427,7 @@ function hotMap(d) {
     var days = d.data.yItem;
     var data = d.data.data;
     console.log(days)
-    var color=  [
-        '#22DDDD', '#fec42c', '#80F1BE'
-    ];
+
     let option = {
         dataZoom: [
             {
@@ -242,7 +470,7 @@ function hotMap(d) {
                 }
             }, axisLabel: {
                 margin: 10,
-                color: '#9aa2aa',
+                color: '#fff',
                 textStyle: {
                     fontSize: 14
                 },
@@ -269,7 +497,7 @@ function hotMap(d) {
             axisLabel: {
                 show: true,
                 textStyle: {
-                    color: "#9ba2aa"
+                    color: "#fff"
                 }
             },
         },
@@ -306,7 +534,6 @@ function hotMap(d) {
 }
     function createFrom(d){
 
-        var legendData =['水','电'];
 
         var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
@@ -349,9 +576,11 @@ function hotMap(d) {
                 type: 'category',
                 data:d.item,
                 axisLabel: {
+                    interval: 0,
+                    rotate:45,
                     textStyle: {
-                        fontSize: 14,
-                        color: '#000'
+                        fontSize: 12,
+                        color: '#fff'
                     }
                 },
                 axisLine: {
