@@ -18,9 +18,16 @@
         .topFiveDiv{ width: 100%; height: 280px;  float:left; }
         .topFiveDiv .listDiv{ width: 20%; height: 280px; float: left; box-sizing: border-box; padding: 10px;}
         .listDivInner{ width: 100%; height: 200px;float: left;}
-        .botDiv{ width: 100%; height: 500px; float: left;}
-        .botDiv .twoDiv{ width: 50%; height: 100%; padding: 50px; box-sizing: border-box; float: left;}
+        .botDiv{ width: 100%; height: 400px; float: left;}
+        .botDiv .twoDiv{ width: 48%; height: 100%; box-sizing: border-box; float: left;}
+        .twoDivOne{ margin-right: 4%;}
         .flagMap{ width: 100%; height: 100%; float: left; border:1px solid rgba(244,244,244,.3); background-color: rgba(255,255,255,.1)}
+        .skewSpan{ width: 30px; height: 20px; display: inline-block;margin-right:10px;}
+        .listDivTitle{ width: 100%; height: 30px; line-height: 30px; float: left; color: #fff;}
+        .skewSpan i{ display: inline-block;  height: 20px; width: 2px; margin-right: 4px; background-color:#aaa; transform: skew(-15deg);}
+       .skewSpan .skewI1{width: 6px; margin-left: 5px;}
+
+
 
     </style>
 </head>
@@ -28,24 +35,49 @@
 <div class="allDiv">
     <div class="topFiveDiv">
         <div class="listDiv">
+            <div class="listDivTitle">
+                <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+                应用热度图
+            </div>
             <div id="hotMap" class="listDivInner"></div>
         </div>
         <div class="listDiv">
+            <div class="listDivTitle">
+                <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+                关键词分部
+            </div>
             <div id="keywords" class="listDivInner"></div>
         </div>
+
         <div class="listDiv">
-            <div id="lineBox" class="listDivInner"></div>
-        </div>
-        <div class="listDiv">
+            <div class="listDivTitle">
+                <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+                行为分析
+            </div>
             <div id="createAction" class="listDivInner"></div>
         </div>
         <div class="listDiv">
+            <div class="listDivTitle">
+                <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+                访问类型
+            </div>
+            <div id="lineBox" class="listDivInner"></div>
+        </div>
+        <div class="listDiv">
+            <div class="listDivTitle">
+                <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+                访问频次排名
+            </div>
             <div id="createFrom" class="listDivInner"></div>
         </div>
 
     </div>
     <div class="botDiv">
-        <div class="twoDiv">
+        <div class="listDivTitle">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            访问目标分部
+        </div>
+        <div class="twoDiv twoDivOne">
             <div id="createChinaMap" class="flagMap"></div>
         </div>
         <div class="twoDiv">
@@ -257,8 +289,9 @@
     }
     function createAction(data) {
         let option = {
+            backgroundColor:'rgba(255,255,255,.1)',
+
             color: colors,
-            backgroundColor: '',
             tooltip: {
                 trigger: 'item',
                 formatter: "{b}<br/>访问频次: {c}"
@@ -312,8 +345,9 @@
     }
     function createWorldMap(data) {
         let option = {
+            backgroundColor:'rgba(255,255,255,.1)',
+
             color: colors,
-            backgroundColor: '',
             tooltip: {
 
             },
@@ -385,6 +419,8 @@ function createChinaMap(data) {
 }
 function keywords(data){
     var option = {
+        backgroundColor:'rgba(255,255,255,.1)',
+
         "tooltip": {
             "show": true,
             "textStyle": {
@@ -444,9 +480,9 @@ function hotMap(d) {
         animation: false,
         grid: {
             top: '0',
-            left: '35',
+            left: '0',
             right: '0',
-            bottom: '23',
+            bottom: '0',
         },
         xAxis: {
             type: 'category',
@@ -557,6 +593,7 @@ function hotMap(d) {
             color: '#9E5431'
         }]);
         var option = {
+
             tooltip: {
                 trigger: 'axis',
                 axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -567,10 +604,10 @@ function hotMap(d) {
                 show:false
             },
             grid: {
-                left: '15%',
-                right: '15%',
-                bottom: '20%',
-                top:'20%'
+                left: '0',
+                right: '0%',
+                bottom: '0%',
+                top:'0%'
             },
             xAxis: {
                 type: 'category',
