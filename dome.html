@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/lib/echarts-wordcloud.min.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/china.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/world.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/all-province.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        body,html{ width: 100%; height: 100%;background-color: #454545;}
+        .allDiv{ width: 100%; height: 100%; background-image: url("bg_temp.png");background-size: 100%; background-repeat: no-repeat; position: absolute; z-index:999 !important;box-sizing: border-box; padding: 50px 50px 140px 50px; }
+        .topFiveDiv{ width: 100%; height: 280px;  float:left; }
+        .topFiveDiv .listDiv{ width: 20%; height: 280px; float: left; box-sizing: border-box; padding: 10px;}
+        .listDivInner{ width: 100%; height: 200px;float: left;}
+        .botDiv{ width: 100%; height: 400px; float: left;}
+        .botDiv .twoDiv{ width: 48%; height: 100%; box-sizing: border-box; float: left;}
+        .twoDivOne{ margin-right: 4%;}
+        .flagMap{ width: 100%; height: 100%; float: left; border:1px solid rgba(244,244,244,.3); background-color: rgba(255,255,255,.1)}
+        .skewSpan{ width: 30px; height: 20px; display: inline-block;margin-right:10px;}
+        .listDivTitle{ width: 100%; height: 30px; line-height: 30px; float: left; color: #fff;}
+        .skewSpan i{ display: inline-block;  height: 20px; width: 2px; margin-right: 4px; background-color:#aaa; transform: skew(-15deg);}
+       .skewSpan .skewI1{width: 6px; margin-left: 5px;}
+
+
+
+    </style>
+</head>
+<body>
+<div id="createWords" style="width: 340px; height: 270px; float: left;"></div>
+<div id="createWorks" style="width: 340px; height: 270px;float: left;"></div>
+<div id="createSchool" style="width: 340px; height: 270px;float: left;"></div>
+<div id="lineShadow" style="width: 340px; height: 270px;float: left;"></div>
+
+
+
+
+
+<script>
+
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClass',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            for(var i=0;i<res.Data.length;i++){
+               a.push({name:res.Data[i],value:i})
+            }
+            createWords(a)
+
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClassByRequireNum',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[]
+            var b=[]
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key)
+                b.push(res.Data[i].val)
+            }
+            createWorks(a,b)
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/querySalaryLevel',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[]
+            var b=[]
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key)
+                b.push(res.Data[i].val)
+
+            }
+            createLineShadow(a,b,'lineShadow')
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryEducatioinV',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[]
+            var b=[]
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key)
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val})
+
+            }
+            schoolBackground(a,b,'createSchool')
+        }
+    })
+
+
+
+    function createLineShadow(ys,ns,dom){
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'line',
+                    lineStyle: {
+                        color: '#206b7c',
+                        type: 'dotted'
+                    }
+                },
+                textStyle: {
+                    fontSize: 18,
+                },
+                formatter: "{b} :{c0}",
+            },
+            legend: {
+                top: '0',
+                right: '3%',
+                icon: "roundRect",
+                itemWidth: 12,
+                itemHeight: 2,
+                textStyle: {
+                    color: '#ffffff',
+                    fontStyle: 'normal',
+                    fontSize: 14,
+                    // fontFamily: 'CRegular',
+                    fontFamily: '黑体',
+                },
+            },
+            grid:{
+                top: '20%',
+                left:'10%',
+                right:'4%',
+                bottom:'15%'
+            },
+            xAxis: [{
+                type: 'category',
+                data:ys,
+                boundaryGap: false,
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+
+                },
+                splitLine: {
+                    type: 'category',
+                    show: false,
+                    lineStyle: {
+                        color: '#206b7c',
+                        opacity: 0.5,
+                        type: 'solid'
+                    }
+                },
+                axisLabel: {
+                    textStyle: {
+                        fontFamily: 'FZHTJW',
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+
+                },
+            }],
+            yAxis: [{
+                scale:true,
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#206b7c',
+                        opacity: 0.5,
+                        type: 'solid'
+                    }
+                },
+                axisLabel: {
+                    formatter:function(value){
+                        return (value/1000)+'k'
+
+                    },
+                    textStyle: {
+                        fontFamily: 'FZHTJW',
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+
+                },
+
+            }],
+            series: [{
+
+                type: 'line',
+                smooth: true,
+                symbol: "none",
+                lineStyle: {
+                    width: 2,
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#659bd2',
+                    }
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color: 'rgba(101,155,210,0.2)' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'rgba(101,155,210,0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
+                },
+                data: ns,
+            }]
+
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+
+function createWords(data){
+    var option = {
+        backgroundColor:'rgba(255,255,255,.1)',
+
+        "tooltip": {
+            "show": false,
+        },
+        "series": [{
+            "name": "关键词分布",
+            "type": "wordCloud",
+            "gridSize": 20,
+            textStyle: {
+                normal: {
+                    color: function(v) {
+                        let color = ['#27D38A',  '#5DD1FA','#47A0FF']
+                        let num =Math.floor(Math.random() * (2 + 1));
+
+                        return color[num];
+                    },
+                },
+            },
+            "sizeRange": [12, 16],
+            "rotationRange": [0, 0],
+            "shape": "circle",
+            "autoSize": {
+                "enable": true,
+                "minSize": 12,
+                'maxSize':16,
+            },
+            "data": data
+        }]
+    }
+    var myChart = echarts.init(document.getElementById('createWords'));
+    myChart.setOption(option);
+}
+    function schoolBackground(a,b,dom){
+        var option = {
+            tooltip : {
+
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+
+            },
+            legend: {
+                show:false,
+
+
+            },
+            color: ['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'],
+
+            series : [
+                {
+                    name:'学历要求',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['40%', '50%'],
+                    data:b,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+
+                }
+            ]
+        };
+
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createWorks(a,b){
+
+
+        var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#6ec2d9'
+        }, {
+            offset: 1,
+            color: '#3468bc'
+        }]);
+        var colorSet2 =  new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#76c19f'
+        }, {
+            offset: 1,
+            color: '#18b5b5'
+        }]);
+        var colorSet3 =  new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#E37552'
+        }, {
+            offset: 1,
+            color: '#9E5431'
+        }]);
+        var option = {
+
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                show:false
+            },
+            grid: {
+                left: '14%',
+                right: '5%',
+                bottom: '25%',
+                top:'5%'
+            },
+            xAxis: {
+                type: 'category',
+                data:a,
+                axisLabel: {
+                    interval: 0,
+                    rotate:45,
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter:function(val){
+                        return (val/1000)+'k'
+                    },
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                splitLine:{
+                    show:false
+                },
+                axisLine: {
+
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+
+            },
+            series: [{
+                name:'访问人次排名',
+                data: b,
+                type: 'bar',
+                barWidth: 10,
+                barGap: 1,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: [5, 5, 0, 0],
+                        color:colorSet
+                    }
+                },
+            }]
+        };
+        var myChart = echarts.init(document.getElementById('createWorks'));
+        myChart.setOption(option);
+    }
+</script>
+</body>
+</html>
