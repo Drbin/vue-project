@@ -35,6 +35,7 @@
 <div id="createWorks" style="width: 340px; height: 270px;float: left;"></div>
 <div id="createSchool" style="width: 340px; height: 270px;float: left;"></div>
 <div id="lineShadow" style="width: 340px; height: 270px;float: left;"></div>
+<div id="station" style="width: 340px; height: 270px;float: left;"></div>
 
 
 
@@ -66,7 +67,7 @@
                 a.push(res.Data[i].key)
                 b.push(res.Data[i].val)
             }
-            createWorks(a,b)
+            createWorks(a,b,'createWorks')
         }
     })
     $.ajax({
@@ -97,6 +98,20 @@
 
             }
             schoolBackground(a,b,'createSchool')
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClassByRequireNum',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[]
+            var b=[]
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key)
+                b.push(res.Data[i].val)
+            }
+            createWorks(a,b,'createWorks')
         }
     })
 
@@ -249,8 +264,7 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-
-function createWords(data){
+    function createWords(data){
     var option = {
         backgroundColor:'rgba(255,255,255,.1)',
 
@@ -322,9 +336,7 @@ function createWords(data){
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-    function createWorks(a,b){
-
-
+    function createWorks(a,b,dom){
         var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
             color: '#6ec2d9'
@@ -332,20 +344,7 @@ function createWords(data){
             offset: 1,
             color: '#3468bc'
         }]);
-        var colorSet2 =  new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-            offset: 0,
-            color: '#76c19f'
-        }, {
-            offset: 1,
-            color: '#18b5b5'
-        }]);
-        var colorSet3 =  new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-            offset: 0,
-            color: '#E37552'
-        }, {
-            offset: 1,
-            color: '#9E5431'
-        }]);
+
         var option = {
 
             tooltip: {
@@ -413,12 +412,12 @@ function createWords(data){
                 itemStyle: {
                     normal: {
                         barBorderRadius: [5, 5, 0, 0],
-                        color:colorSet
+                        color:'#3468bc'
                     }
                 },
             }]
         };
-        var myChart = echarts.init(document.getElementById('createWorks'));
+        var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
 </script>
