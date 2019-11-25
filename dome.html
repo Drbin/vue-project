@@ -31,11 +31,20 @@
     </style>
 </head>
 <body>
+<!--岗位需求热词-->
 <div id="createWords" style="width: 340px; height: 270px; float: left;"></div>
+<!--岗位需求数量-->
+
 <div id="createWorks" style="width: 340px; height: 270px;float: left;"></div>
+<!--学历-->
 <div id="createSchool" style="width: 340px; height: 270px;float: left;"></div>
+<!--人才薪资-->
+
 <div id="lineShadow" style="width: 340px; height: 270px;float: left;"></div>
+<!--园区岗位统计-->
 <div id="station" style="width: 340px; height: 270px;float: left;"></div>
+<!--园区岗位数量统计-->
+<div id="stationNum" style="width: 340px; height: 270px;float: left;"></div>
 
 
 
@@ -52,7 +61,7 @@
             for(var i=0;i<res.Data.length;i++){
                a.push({name:res.Data[i],value:i})
             }
-            createWords(a)
+            createWords(a,'createWords')
 
         }
     })
@@ -101,17 +110,29 @@
         }
     })
     $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClassByRequireNum',
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostV',
         type:'GET',
         dataType:'json',
         success:function (res) {
-            var a=[]
-            var b=[]
+            var a=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push({name:res.Data[i].key,value:res.Data[i].val})
+            }
+            createWords(a,'station')
+        }
+    })
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostV',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
             for(var i=0;i<res.Data.length;i++){
                 a.push(res.Data[i].key)
                 b.push(res.Data[i].val)
             }
-            createWorks(a,b,'createWorks')
+            createWorks(a,b,'stationNum')
         }
     })
 
@@ -264,41 +285,41 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-    function createWords(data){
-    var option = {
-        backgroundColor:'rgba(255,255,255,.1)',
+    function createWords(data,dom){
+        var option = {
+            backgroundColor:'rgba(255,255,255,.1)',
 
-        "tooltip": {
-            "show": false,
-        },
-        "series": [{
-            "name": "关键词分布",
-            "type": "wordCloud",
-            "gridSize": 20,
-            textStyle: {
-                normal: {
-                    color: function(v) {
-                        let color = ['#27D38A',  '#5DD1FA','#47A0FF']
-                        let num =Math.floor(Math.random() * (2 + 1));
+            "tooltip": {
+                "show": false,
+            },
+            "series": [{
+                "name": "关键词分布",
+                "type": "wordCloud",
+                "gridSize": 20,
+                textStyle: {
+                    normal: {
+                        color: function(v) {
+                            let color = ['#27D38A',  '#5DD1FA','#47A0FF']
+                            let num =Math.floor(Math.random() * (2 + 1));
 
-                        return color[num];
+                            return color[num];
+                        },
                     },
                 },
-            },
-            "sizeRange": [12, 16],
-            "rotationRange": [0, 0],
-            "shape": "circle",
-            "autoSize": {
-                "enable": true,
-                "minSize": 12,
-                'maxSize':16,
-            },
-            "data": data
-        }]
+                "sizeRange": [12, 16],
+                "rotationRange": [0, 0],
+                "shape": "circle",
+                "autoSize": {
+                    "enable": true,
+                    "minSize": 12,
+                    'maxSize':16,
+                },
+                "data": data
+            }]
+        }
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
     }
-    var myChart = echarts.init(document.getElementById('createWords'));
-    myChart.setOption(option);
-}
     function schoolBackground(a,b,dom){
         var option = {
             tooltip : {
