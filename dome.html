@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
     <script src="http://202.85.223.75:8090/zpark/lib/echarts-wordcloud.min.js"></script>
     <script src="http://202.85.223.75:8090/zpark/js/map/china.js"></script>
@@ -24,13 +24,16 @@
         .skewSpan{ width: 30px; height: 20px; display: inline-block;margin-right:10px;}
         .listDivTitle{ width: 100%; height: 30px; line-height: 30px; float: left; color: #fff;}
         .skewSpan i{ display: inline-block;  height: 20px; width: 2px; margin-right: 4px; background-color:#aaa; transform: skew(-15deg);}
-       .skewSpan .skewI1{width: 6px; margin-left: 5px;}
+       .skewSpan .skewI1{width: 6px; margin-left: 5px; }
 
 
 
     </style>
 </head>
 <body>
+
+
+
 <!--岗位需求热词-->
 <div id="createWords" style="width: 340px; height: 270px; float: left;"></div>
 <!--岗位需求数量-->
@@ -46,11 +49,34 @@
 <!--园区岗位数量统计-->
 <div id="stationNum" style="width: 340px; height: 270px;float: left;"></div>
 
+<!--薪资水平-->
+<div id="moreLine" style="width: 340px; height: 270px;float: left;"></div>
 
+<!--招聘渠道-->
+<div id="jobCanal" style="width: 340px; height: 270px;float: left;"></div>
+<!--毕业年限-->
+<div id="yearLong" style="width: 340px; height: 270px; float: left"></div>
+<!--园区人员学历统计-->
+<div id="innerSchool" style="width: 340px; height: 270px; float: left"></div>
+<!--园区人员毕业年限统计-->
+<div id="unStudyYear" style="width: 340px; height: 270px; float: left"></div>
+<!--园区人员招聘方式占比 4.7-->
+<div id="jobType" style="width: 340px; height: 270px; float: left"></div>
+<!--知识产权-->
+<div id="knowledgePower" style="width: 340px; height: 270px; float: left"></div>
+<!--产品数量-->
 
-
-
+<div id="productNum" style="width: 340px; height: 270px; float: left"></div>
+<!--1， 园区企业总收入—按市场类型 6.3.1_国际业务分析-->
+<div id="companyIncome" style="width: 340px; height: 270px; float: left"></div>
+<!--， 园区企业获得国际资质认证 6.3.1_国际业务分析-->
+<div id="interNation" style="width: 340px; height: 270px; float: left"></div>
+<!--3， 园区国际业务收入 6.3.1_国际业务分析-->
+<div id="cIncome" style="width: 340px; height: 270px; float: left"></div>
+<div id="moreRing" style="width: 340px; height: 270px; float: left"></div>
 <script>
+
+
 
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClass',
@@ -64,51 +90,65 @@
             createWords(a,'createWords')
 
         }
-    })
+    });
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClassByRequireNum',
         type:'GET',
         dataType:'json',
         success:function (res) {
-            var a=[]
-            var b=[]
+            var a=[];
+            var b=[];
             for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key)
-                b.push(res.Data[i].val)
+                a.push(res.Data[i].key);
+                b.push(res.Data[i].val);
             }
-            createWorks(a,b,'createWorks')
+            createBar(a,b,'createWorks');
         }
-    })
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostNumCount',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push(res.Data[i].val);
+            }
+            createBar(a,b,'stationNum',1);
+        }
+    });
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkTalentController/querySalaryLevel',
         type:'GET',
         dataType:'json',
         success:function (res) {
-            var a=[]
-            var b=[]
+            var a=[];
+            var b=[];
             for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key)
-                b.push(res.Data[i].val)
+                a.push(res.Data[i].key);
+                b.push(res.Data[i].val);
 
             }
-            createLineShadow(a,b,'lineShadow')
+            createLineShadow(a,b,'lineShadow');
         }
-    })
+    });
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryEducatioinV',
         type:'GET',
         dataType:'json',
         success:function (res) {
-            var a=[]
-            var b=[]
+            var a=[];
+            var b=[];
             for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key)
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val})
+                a.push(res.Data[i].key);
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
 
             }
-            schoolBackground(a,b,'createSchool')
+            createPie(a,b,'createSchool','学历要求');
         }
-    })
+    });
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostV',
         type:'GET',
@@ -120,24 +160,751 @@
             }
             createWords(a,'station')
         }
-    })
+    });
     $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostV',
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkSalaryLevel',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            for(var i=0;i<res.Data.series.length;i++){
+                res.Data.series[i].type='line'
+            }
+
+            createMoreLine(res.Data.xaxis,res.Data.series,'moreLine');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkEmployeeSource',
         type:'GET',
         dataType:'json',
         success:function (res) {
             var a=[];
             var b=[];
             for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key)
-                b.push(res.Data[i].val)
+                a.push(res.Data[i].key);
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
+
             }
-            createWorks(a,b,'stationNum')
+            createPie(a,b,'jobCanal','招聘渠道');
         }
-    })
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryExperienceCount',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
+
+            }
+            createPie(a,b,'yearLong','毕业年限');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPeopleEducation',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
+            }
+            createPie(a,b,'innerSchool','学历统计');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkGraduateYears',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+
+            createRing(res.Data,'unStudyYear');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkEmployeeSourceV',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
+            }
+            createPie(a,b,'jobType','招聘占比');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryKnowledgePower',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+
+            createNewRing(res.Data,'knowledgePower');
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryProductNum',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push(res.Data[i].val);
+            }
+            createBar(a,b,'productNum',1);
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryZparkCompanyIncome',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            var c=[];
+            var d=[];
+            for(let key in res.Data['国内市场']){
+                a.push(key);
+                c.push(res.Data['国内市场'][key])
+            }
+            b.push(c)
+
+            for(let key in res.Data['国内市场']){
+                d.push(res.Data['国际市场'][key])
+            }
+            b.push(d);
+            createMoreBar(a,b,'companyIncome',1,'亿元')
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationAuthen',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var category=[]
+            var rateData =[]
+            var barData=[];
+            var obj={
+                'barDw':res.Data.nationAuthNumDw,
+                'lineDw':res.Data.nationAuthDw,
+                'barName':'园区企业获得国际资质认证',
+                'lineName':'园区企业获得国际资质认证数量'
+
+            };
+            for(let key in res.Data['nationAuth']){
+                category.push(key);
+                barData.push(res.Data['nationAuth'][key])
+            }
+
+            for(let key in res.Data['nationAuthNum']){
+                rateData.push(res.Data['nationAuthNum'][key])
+            }
 
 
+            createBarLine(category,rateData,barData,'interNation',obj)
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationIncome',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var category=[]
+            var rateData =[]
+            var barData=[];
+            var obj={
+                'barDw':res.Data.nationAddNumDw,
+                'lineDw':res.Data.nationAddvDw,
+                'barName':'园区国际业务收入',
+                'lineName':'园区国际业务收入增长率'
 
+            };
+            for(let key in res.Data['nationAddv']){
+                category.push(key);
+                barData.push(res.Data['nationAddv'][key])
+            }
+
+            for(let key in res.Data['nationAddNum']){
+                rateData.push(res.Data['nationAddNum'][key])
+            }
+
+
+            createBarLine(category,rateData,barData,'cIncome',obj)
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationServices',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var years=[];
+            var a=res.Data.wdzs;
+            var b=[];
+            for(var year in res.Data.data){
+                years.push(year);
+            }
+            for(var i=0;i<years.length;i++){
+                var s=[];
+                for(var val in res.Data.data[years[i]]){
+                    s.push({value:res.Data.data[years[i]][val], name:val});
+                }
+                b.push(s)
+            }
+
+            createMoreRing(a,b,years,'moreRing')
+        }
+    });
+    const colors = ["#20e49f","#0bc785","#5cc3f0","#4189a9","#28a9e1","#6690f2","#0d6a92","#3469e4","#4866ab"];
+    const newColor=['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'];
+
+    function createMoreRing(a,b,years,dom){
+        function ring(){
+            var a=[];
+            for (var i=0; i<b.length;i++){
+                a.push(  {
+                    name:years[i],
+                    type:'pie',
+                    radius: [i*12+10+'%',i*12+13+'%' ],
+                    hoverOffset: 3,
+                    label: {
+                        show:false,
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:b[i]
+                })
+            }
+            return a;
+        }
+        let  option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            color:newColor,
+            legend: {
+                orient: 'vertical',
+                x: 'right',
+                textStyle:{
+                    color:'#fff'
+                },
+                data:a
+            },
+            series: ring()
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
+    function createBarLine(category,rateData,barData,dom,obj){
+        var option = {
+            title: {
+                text: '',
+                x: 'center',
+                y: 0,
+                textStyle:{
+                    color:'#B4B4B4',
+                    fontSize:16,
+                    fontWeight:'normal',
+                },
+
+            },
+            tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                    type: "shadow",
+                    label: {
+                        show: true
+                    }
+                }
+            },
+            legend: {
+                show:false,
+                textStyle: {
+                    color: '#B4B4B4'
+                },
+                top:'7%',
+            },
+            grid:{
+                top:"20%",
+                bottom:'15%',
+                left:'10%',
+                right:'10%'
+
+            },
+            xAxis: {
+                data: category,
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4'
+                    }
+                },
+                axisTick:{
+                    show:false,
+                },
+            },
+            yAxis: [{
+                name: obj.lineDw,
+                nameTextStyle: {
+                    color: "#ebf8ac"
+                },
+                splitLine: {show: false},
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4',
+                    }
+                },
+
+                axisLabel:{
+                    formatter:'{value} ',
+                }
+            },
+                {
+                    name: obj.barDw,
+                    nameTextStyle: {
+                        color: "#ebf8ac"
+                    },
+                    splitLine: {show: false},
+                    axisLine: {
+                        lineStyle: {
+                            color: '#B4B4B4',
+                        }
+                    },
+                    axisLabel:{
+                        formatter:'{value} ',
+                    }
+                }],
+
+            series: [{
+                name: obj.barName,
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'none',
+                symbolSize: 8,
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {
+                        color:'#20e49f'
+                    },
+                },
+                data: rateData
+            },
+
+                {
+                    name:  obj.lineName,
+                    type: 'bar',
+                    barWidth: 10,
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: 5,
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#956FD4'},
+                                    {offset: 1, color: '#3EACE5'}
+                                ]
+                            )
+                        }
+                    },
+                    data: barData
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
+    function createNewRing(d,dom) {
+        var data =d
+        arrName = getArrayValue(data, "key");
+        arrValue = getArrayValue(data, "val");
+        sumValue = eval(arrValue.join('+'));
+        objData = array2obj(data, "key");
+        optionData = getData(data)
+        function getArrayValue(array, key) {
+            var key = key || "val";
+            var res = [];
+            if (array) {
+                array.forEach(function(t) {
+                    res.push(t[key]);
+                });
+            }
+            return res;
+        }
+
+        function array2obj(array,key) {
+            var resObj = {};
+            for(var i=0;i<array.length;i++){
+                resObj[array[i][key]] = array[i];
+            }
+            return resObj;
+        }
+
+        function getData(data) {
+            var res = {
+                series: [],
+                yAxis: []
+            };
+            for (let i = 0; i < data.length; i++) {
+                res.series.push({
+                    name: '',
+                    type: 'pie',
+                    clockWise: false, //顺时加载
+                    hoverAnimation: false, //鼠标移入变大
+                    radius: [72 - i * 11 + '%', 73 - i * 11 + '%'],
+                    center: ["40%", "55%"],
+                    label: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            borderWidth: 5,
+                            shadowBlur: 50,
+                            borderColor: '#5FC5F5',
+                            shadowColor: 'rgba(142,152,241, 0.6)'
+                        }
+                    },
+                    data: [
+                        {
+                            value: (data[i].val),
+                            name: data[i].key
+                        },
+                        {
+                            value: sumValue - data[i].val,
+                            name: '',
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    },
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    borderColor: 'rgba(0, 0, 0, 0)',
+                                    borderWidth: 0
+                                }
+                            },
+                            tooltip: {
+                                show: false
+                            },
+                            hoverAnimation: false
+                        }
+                    ]
+                });
+
+
+                res.yAxis.push(data[i].key+"  :"+data[i].val+"" );
+            }
+            return res;
+        }
+        var option = {
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                show: true,
+                trigger: "item",
+                formatter: "{b}:{c} "
+            },
+            color: ['rgb(24, 183, 142)', 'rgb(1, 179, 238)', 'rgb(22, 75, 205)', 'rgb(52, 52, 176)'],
+            grid: {
+                top: '15%',
+                bottom: '50%',
+                left: "42%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 12,
+                    },
+                    show: true
+                },
+                data: optionData.yAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: optionData.series
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createRing(d,dom) {
+        var data =d
+        arrName = getArrayValue(data, "key");
+        arrValue = getArrayValue(data, "val");
+        sumValue = eval(arrValue.join('+'))*100;
+        objData = array2obj(data, "key");
+        optionData = getData(data)
+        function getArrayValue(array, key) {
+            var key = key || "val";
+            var res = [];
+            if (array) {
+                array.forEach(function(t) {
+                    res.push(t[key]);
+                });
+            }
+            return res;
+        }
+
+        function array2obj(array,key) {
+            var resObj = {};
+            for(var i=0;i<array.length;i++){
+                resObj[array[i][key]] = array[i];
+            }
+            return resObj;
+        }
+
+        function getData(data) {
+            var res = {
+                series: [],
+                yAxis: []
+            };
+            for (let i = 0; i < data.length; i++) {
+                res.series.push({
+                    name: '',
+                    type: 'pie',
+                    clockWise: false, //顺时加载
+                    hoverAnimation: false, //鼠标移入变大
+                    radius: [72 - i * 15 + '%', 73 - i * 15 + '%'],
+                    center: ["40%", "55%"],
+                    label: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            borderWidth: 5,
+                            shadowBlur: 50,
+                            borderColor: '#5FC5F5',
+                            shadowColor: 'rgba(142,152,241, 0.6)'
+                        }
+                    },
+                    data: [
+                        {
+                            value: (data[i].val)*100,
+                            name: data[i].key
+                        },
+                        {
+                            value: sumValue - data[i].val,
+                            name: '',
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    },
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    borderColor: 'rgba(0, 0, 0, 0)',
+                                    borderWidth: 0
+                                }
+                            },
+                            tooltip: {
+                                show: false
+                            },
+                            hoverAnimation: false
+                        }
+                    ]
+                });
+
+
+                res.yAxis.push(data[i].key+"  :"+data[i].val*100+"%" );
+            }
+            return res;
+        }
+        var option = {
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                show: true,
+                trigger: "item",
+                formatter: "{b}:{c} %"
+            },
+            color: ['rgb(24, 183, 142)', 'rgb(1, 179, 238)', 'rgb(22, 75, 205)', 'rgb(52, 52, 176)'],
+            grid: {
+                top: '15%',
+                bottom: '55%',
+                left: "42%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 12,
+                    },
+                    show: true
+                },
+                data: optionData.yAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: optionData.series
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createMoreLine(a,b,dom) {
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function(point, params, dom, rect, size){
+                    //其中point为当前鼠标的位置，size中有两个属性：viewSize和contentSize，分别为外层div和tooltip提示框的大小
+                    var x = point[0];//
+                    var y = point[1];
+                    var viewWidth = size.viewSize[0];
+                    var viewHeight = size.viewSize[1];
+                    var boxWidth = size.contentSize[0];
+                    var boxHeight = size.contentSize[1];
+                    var posX = 0;//x坐标位置
+                    var posY = 0;//y坐标位置
+
+                    if(x<boxWidth){//左边放不开
+                        posX = 5;
+                    }else{//左边放的下
+                        posX = x-boxWidth;
+                    }
+
+                    if(y<boxHeight){//上边放不开
+                        posY = 5;
+                    }else{//上边放得下
+                        posY = y-boxHeight;
+                    }
+
+                    return [posX,posY];
+
+                }
+            },
+            color:colors,
+            legend: {
+                show:false,
+            },
+            grid: {
+                left: '5%',
+                right: '4%',
+                bottom: '15%',
+                containLabel: true
+            },
+
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+
+                },
+                axisLabel: {
+                    margin: 10,
+
+                    color: '#fff',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+                data:a
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisLabel: {
+                    color: '#fff',
+                    formatter:function(value){
+                        return value+'k'
+                    },
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+            },
+            series:b
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
     function createLineShadow(ys,ns,dom){
         var option = {
             tooltip: {
@@ -320,7 +1087,7 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-    function schoolBackground(a,b,dom){
+    function createPie(a,b,dom,tit){
         var option = {
             tooltip : {
 
@@ -337,7 +1104,7 @@
 
             series : [
                 {
-                    name:'学历要求',
+                    name:tit,
                     type: 'pie',
                     radius : '55%',
                     center: ['40%', '50%'],
@@ -357,7 +1124,8 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-    function createWorks(a,b,dom){
+    function createBar(a,b,dom,flag){
+
         var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
             color: '#6ec2d9'
@@ -405,7 +1173,12 @@
                 type: 'value',
                 axisLabel: {
                     formatter:function(val){
-                        return (val/1000)+'k'
+                        if(flag==1){
+                            return val;
+                        }else{
+                            return (val/1000)+'k'
+                        }
+
                     },
                     textStyle: {
                         fontSize: 12,
@@ -441,6 +1214,111 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
+    function createMoreBar(a,b,dom,flag,dw){
+
+        var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#6ec2d9'
+        }, {
+            offset: 1,
+            color: '#3468bc'
+        }]);
+        function moreBar(){
+            var a=[];
+            for(var i=0;i<b.length;i++){
+                a.push({
+                    name:'访问人次排名',
+                    data: b[i],
+                    type: 'bar',
+                    barWidth: 10,
+                    barGap: 1,
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: [5, 5, 0, 0],
+                            color:newColor[i]
+                        }
+                    },
+                })
+            }
+            return a;
+
+        }
+
+        var option = {
+
+            tooltip: {
+                trigger: 'axis',
+                formatter:function(val){
+                    var str=''
+                    for(var i=0;i<val.length;i++){
+                        str+=val[i].value+':'+dw+"</br>";
+                    }
+                    return str;
+                },
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                show:false
+            },
+            grid: {
+                left: '14%',
+                right: '5%',
+                bottom: '25%',
+                top:'5%'
+            },
+            xAxis: {
+                type: 'category',
+                data:a,
+                axisLabel: {
+
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter:function(val){
+                        if(flag==1){
+                            return val;
+                        }else{
+                            return (val/1000)+'k'
+                        }
+
+                    },
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                splitLine:{
+                    show:false
+                },
+                axisLine: {
+
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+
+            },
+            series: moreBar()
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+
 </script>
 </body>
 </html>
