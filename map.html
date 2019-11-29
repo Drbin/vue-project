@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/lib/echarts-wordcloud.min.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/china.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/world.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/all-province.js"></script>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        body,html{ width: 100%; height: 100%;}
+        .allDiv{ width: 100%; height: 100%; background-image: url("bg_temp.png");background-size: 100%; background-repeat: no-repeat; position: absolute; z-index:999 !important;box-sizing: border-box; padding: 50px 50px 140px 50px; }
+
+        .flagMap{ width: 100%; height: 100%;}
+
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="allDiv">
+    <div id="createChinaMap" class="flagMap"></div>
+</div>
+
+
+<script>
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryDomesticExtendCountByProvince',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            createChinaMap(res.Data)
+        }
+    })
+    var colors=[
+        "#20e49f",
+        "#0bc785",
+        "#5cc3f0",
+        "#4189a9",
+        "#28a9e1",
+        "#6690f2",
+        "#0d6a92",
+        "#3469e4",
+        "#4866ab",
+
+    ];
+    function createChinaMap(data) {
+        let option = {
+            color:colors,
+            backgroundColor: '',
+            tooltip: {
+            },
+            visualMap: {
+                max: 1000000,
+                calculable: true,
+                show:false,
+
+                colorLightness: [0.2, 100],
+                color: [colors[0], colors[1], colors[6]],
+                dimension: 0
+            },
+            series: [
+                {
+                    type: 'map',
+                    name:'访问目标国内省份分布',
+                    mapType: 'china',
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data: data
+                }
+            ]
+        }
+        var myChart = echarts.init(document.getElementById('createChinaMap'));
+        myChart.setOption(option);
+    }
+
+</script>
+</body>
+</html>
