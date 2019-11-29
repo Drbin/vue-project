@@ -97,6 +97,7 @@
         dataType:'json',
         success:function (res) {
             hotMap(res)
+            console.log(res)
         }
     })
     $.ajax({
@@ -139,6 +140,7 @@
         data:{'type':'pv'},
         success:function (res) {
             createAction(res.data)
+            console.log(res)
         }
     })
     $.ajax({
@@ -462,7 +464,6 @@ function hotMap(d) {
     var hours =d.data.item;
     var days = d.data.yItem;
     var data = d.data.data;
-    console.log(days)
 
     let option = {
         dataZoom: [
