@@ -73,7 +73,13 @@
 <div id="interNation" style="width: 340px; height: 270px; float: left"></div>
 <!--3， 园区国际业务收入 6.3.1_国际业务分析-->
 <div id="cIncome" style="width: 340px; height: 270px; float: left"></div>
+
+
 <div id="moreRing" style="width: 340px; height: 270px; float: left"></div>
+
+<!--作品著作年度统计-->
+<div id="manyGoods" style="width: 340px; height: 270px; float: left"></div>
+
 <script>
 
 
@@ -264,6 +270,20 @@
         }
     });
     $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryCopyRegWorksRankByYear',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.length;i++){
+                a.push(res.Data[i].key);
+                b.push(res.Data[i].val);
+            }
+            createBar(a,b,'manyGoods',1,0);
+        }
+    });
+    $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryZparkCompanyIncome',
         type:'GET',
         dataType:'json',
@@ -339,6 +359,28 @@
 
 
             createBarLine(category,rateData,barData,'cIncome',obj)
+        }
+    });
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationServices',
+        type:'GET',
+        dataType:'json',
+        success:function (res) {
+            var years=[];
+            var a=res.Data.wdzs;
+            var b=[];
+            for(var year in res.Data.data){
+                years.push(year);
+            }
+            for(var i=0;i<years.length;i++){
+                var s=[];
+                for(var val in res.Data.data[years[i]]){
+                    s.push({value:res.Data.data[years[i]][val], name:val});
+                }
+                b.push(s)
+            }
+
+            createMoreRing(a,b,years,'moreRing')
         }
     });
     $.ajax({
@@ -1124,7 +1166,13 @@
         var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
-    function createBar(a,b,dom,flag){
+    function createBar(a,b,dom,flag,ag){
+
+        if(ag===0){
+            ag=0
+        }else{
+            ag=45
+        }
 
         var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
@@ -1138,9 +1186,10 @@
 
             tooltip: {
                 trigger: 'axis',
-                axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-                }
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: "{b}:{c} "
             },
             legend: {
                 show:false
@@ -1156,7 +1205,7 @@
                 data:a,
                 axisLabel: {
                     interval: 0,
-                    rotate:45,
+                    rotate:ag,
                     textStyle: {
                         fontSize: 12,
                         color: '#fff'
@@ -1198,7 +1247,7 @@
 
             },
             series: [{
-                name:'访问人次排名',
+                name:'',
                 data: b,
                 type: 'bar',
                 barWidth: 10,
