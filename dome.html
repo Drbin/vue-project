@@ -32,381 +32,110 @@
 </head>
 <body>
 
+<div id="publishedFinanV" style="width: 340px; height: 270px; float: left;"></div>
+<div id="requireFinaMoneyV" style="width: 340px; height: 270px; float: left;"></div>
 
 
-<!--岗位需求热词-->
-<div id="createWords" style="width: 340px; height: 270px; float: left;"></div>
-<!--岗位需求数量-->
-
-<div id="createWorks" style="width: 340px; height: 270px;float: left;"></div>
-<!--学历-->
-<div id="createSchool" style="width: 340px; height: 270px;float: left;"></div>
-<!--人才薪资-->
-
-<div id="lineShadow" style="width: 340px; height: 270px;float: left;"></div>
-<!--园区岗位统计-->
-<div id="station" style="width: 340px; height: 270px;float: left;"></div>
-<!--园区岗位数量统计-->
-<div id="stationNum" style="width: 340px; height: 270px;float: left;"></div>
-
-<!--薪资水平-->
-<div id="moreLine" style="width: 340px; height: 270px;float: left;"></div>
-
-<!--招聘渠道-->
-<div id="jobCanal" style="width: 340px; height: 270px;float: left;"></div>
-<!--毕业年限-->
-<div id="yearLong" style="width: 340px; height: 270px; float: left"></div>
-<!--园区人员学历统计-->
-<div id="innerSchool" style="width: 340px; height: 270px; float: left"></div>
-<!--园区人员毕业年限统计-->
-<div id="unStudyYear" style="width: 340px; height: 270px; float: left"></div>
-<!--园区人员招聘方式占比 4.7-->
-<div id="jobType" style="width: 340px; height: 270px; float: left"></div>
-<!--知识产权-->
-<div id="knowledgePower" style="width: 340px; height: 270px; float: left"></div>
-<!--产品数量-->
-
-<div id="productNum" style="width: 340px; height: 270px; float: left"></div>
-<!--1， 园区企业总收入—按市场类型 6.3.1_国际业务分析-->
-<div id="companyIncome" style="width: 340px; height: 270px; float: left"></div>
-<!--， 园区企业获得国际资质认证 6.3.1_国际业务分析-->
-<div id="interNation" style="width: 340px; height: 270px; float: left"></div>
-<!--3， 园区国际业务收入 6.3.1_国际业务分析-->
-<div id="cIncome" style="width: 340px; height: 270px; float: left"></div>
-
-
-<div id="moreRing" style="width: 340px; height: 270px; float: left"></div>
-
-<!--作品著作年度统计-->
-<div id="manyGoods" style="width: 340px; height: 270px; float: left"></div>
 
 <script>
-
-
-
     $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClass',
+        url:'http://202.85.223.75:8090/zpark/ZparkEnterpriseController/queryInvestAndFinancing',
         type:'GET',
         dataType:'json',
-        success:function (res) {
-            var a=[];
-            for(var i=0;i<res.Data.length;i++){
-               a.push({name:res.Data[i],value:i})
-            }
-            createWords(a,'createWords')
-
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryTopJobClassByRequireNum',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
+        success:function(res){
+            console.log(res)
             var a=[];
             var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push(res.Data[i].val);
+            for(var i=0;i<res.Data.publishedFinanV.length;i++){
+                a.push(res.Data.publishedFinanV[i].key);
+                b.push({'name':res.Data.publishedFinanV[i].key,'value':res.Data.publishedFinanV[i].val});
             }
-            createBar(a,b,'createWorks');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostNumCount',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push(res.Data[i].val);
-            }
-            createBar(a,b,'stationNum',1);
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/querySalaryLevel',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push(res.Data[i].val);
-
-            }
-            createLineShadow(a,b,'lineShadow');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryEducatioinV',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
-
-            }
-            createPie(a,b,'createSchool','学历要求');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPostV',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push({name:res.Data[i].key,value:res.Data[i].val})
-            }
-            createWords(a,'station')
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkSalaryLevel',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            for(var i=0;i<res.Data.series.length;i++){
-                res.Data.series[i].type='line'
-            }
-
-            createMoreLine(res.Data.xaxis,res.Data.series,'moreLine');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkEmployeeSource',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
-
-            }
-            createPie(a,b,'jobCanal','招聘渠道');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryExperienceCount',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
-
-            }
-            createPie(a,b,'yearLong','毕业年限');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkPeopleEducation',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
-            }
-            createPie(a,b,'innerSchool','学历统计');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkGraduateYears',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-
-            createRing(res.Data,'unStudyYear');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryZparkEmployeeSourceV',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push({'name':res.Data[i].key,'value':res.Data[i].val});
-            }
-            createPie(a,b,'jobType','招聘占比');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryKnowledgePower',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-
-            createNewRing(res.Data,'knowledgePower');
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryProductNum',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push(res.Data[i].val);
-            }
-            createBar(a,b,'productNum',1);
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTechnologyController/queryCopyRegWorksRankByYear',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
-            for(var i=0;i<res.Data.length;i++){
-                a.push(res.Data[i].key);
-                b.push(res.Data[i].val);
-            }
-            createBar(a,b,'manyGoods',1,0);
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryZparkCompanyIncome',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var a=[];
-            var b=[];
+            createPie(a,b,'publishedFinanV','已披露融资占比');
             var c=[];
             var d=[];
-            for(let key in res.Data['国内市场']){
-                a.push(key);
-                c.push(res.Data['国内市场'][key])
+            for(var i=0;i<res.Data.requireFinaMoneyV.length;i++){
+                c.push(res.Data.requireFinaMoneyV[i].key);
+                d.push({'name':res.Data.requireFinaMoneyV[i].key,'value':res.Data.requireFinaMoneyV[i].val});
             }
-            b.push(c)
-
-            for(let key in res.Data['国内市场']){
-                d.push(res.Data['国际市场'][key])
-            }
-            b.push(d);
-            createMoreBar(a,b,'companyIncome',1,'亿元')
+            createPie(c,d,'requireFinaMoneyV','融资占比');
         }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationAuthen',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var category=[]
-            var rateData =[]
-            var barData=[];
-            var obj={
-                'barDw':res.Data.nationAuthNumDw,
-                'lineDw':res.Data.nationAuthDw,
-                'barName':'园区企业获得国际资质认证',
-                'lineName':'园区企业获得国际资质认证数量'
+    })
 
-            };
-            for(let key in res.Data['nationAuth']){
-                category.push(key);
-                barData.push(res.Data['nationAuth'][key])
-            }
-
-            for(let key in res.Data['nationAuthNum']){
-                rateData.push(res.Data['nationAuthNum'][key])
-            }
-
-
-            createBarLine(category,rateData,barData,'interNation',obj)
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationIncome',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var category=[]
-            var rateData =[]
-            var barData=[];
-            var obj={
-                'barDw':res.Data.nationAddNumDw,
-                'lineDw':res.Data.nationAddvDw,
-                'barName':'园区国际业务收入',
-                'lineName':'园区国际业务收入增长率'
-
-            };
-            for(let key in res.Data['nationAddv']){
-                category.push(key);
-                barData.push(res.Data['nationAddv'][key])
-            }
-
-            for(let key in res.Data['nationAddNum']){
-                rateData.push(res.Data['nationAddNum'][key])
-            }
-
-
-            createBarLine(category,rateData,barData,'cIncome',obj)
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationServices',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var years=[];
-            var a=res.Data.wdzs;
-            var b=[];
-            for(var year in res.Data.data){
-                years.push(year);
-            }
-            for(var i=0;i<years.length;i++){
-                var s=[];
-                for(var val in res.Data.data[years[i]]){
-                    s.push({value:res.Data.data[years[i]][val], name:val});
-                }
-                b.push(s)
-            }
-
-            createMoreRing(a,b,years,'moreRing')
-        }
-    });
-    $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryInternationServices',
-        type:'GET',
-        dataType:'json',
-        success:function (res) {
-            var years=[];
-            var a=res.Data.wdzs;
-            var b=[];
-            for(var year in res.Data.data){
-                years.push(year);
-            }
-            for(var i=0;i<years.length;i++){
-                var s=[];
-                for(var val in res.Data.data[years[i]]){
-                    s.push({value:res.Data.data[years[i]][val], name:val});
-                }
-                b.push(s)
-            }
-
-            createMoreRing(a,b,years,'moreRing')
-        }
-    });
     const colors = ["#20e49f","#0bc785","#5cc3f0","#4189a9","#28a9e1","#6690f2","#0d6a92","#3469e4","#4866ab"];
     const newColor=['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'];
+    function hometown(data){
+        var option = {
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {
+                    type : 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                containLabel: true
+            },
+            xAxis:  {
+                position: 'top',
+                type: 'value',
+                axisLabel: {
+                    formatter:function(value){
+                        return (value/1000)+'k'
+                    },
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#fff'
+                    }
+                },
+                splitLine: {
+                    show:false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                type: 'category',
+                data:data.item,
+                inverse:true,
+                axisLabel: {
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'bar',
+                    stack: '总量',
+                    barWidth: 10,
+                    itemStyle:{
+                        normal: {
+                            color: '#06d3cd',
+                            barBorderRadius: [0,5,5,0],
+                        }
+                    },
+                    z:  10,
+                    data:data.value[0]
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById("hometown"));
+        myChart.setOption(option);
+    }
 
     function createMoreRing(a,b,years,dom){
         function ring(){
