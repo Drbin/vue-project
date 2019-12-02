@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/lib/echarts-wordcloud.min.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/china.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/world.js"></script>
+    <script src="http://202.85.223.75:8090/zpark/js/map/all-province.js"></script>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        body,html{ width: 100%; height: 100%;}
+        .inSixDiv{ width: 30%; height:380px; float: left; padding-top:30px; box-sizing: border-box; position: relative;  margin-right: 2.5%; margin-bottom: 50px;}
+        .inSixDivInner{ height: 350px; width: 100%; float: left;}
+        .inSixDivInner table{ border: 1px solid #f1f1f1;color: #fff;border-collapse: collapse; float: left; margin-top: 50px; width: 100%; }
+        .inSixDivInner table th ,  .inSixDivInner table td{ height: 30px; line-height: 30px; border: 1px #f1f1f1 solid; text-align: center;}
+        .inSixDivInner table td{ text-align: left;}
+        .inSixDivInner table tr td:nth-last-child(0){text-align: center;}
+        .allDiv{ width: 100%; height: 100%; background-image: url("bg_temp.png");background-size: 100%; background-repeat: no-repeat; position: absolute; z-index:999 !important;box-sizing: border-box; padding: 50px 50px 140px 50px; }
+        .skewSpan{ width: 30px; height: 20px; display: inline-block;margin-right:10px;}
+        .listDivTit{  width: 100%; height: 30px; line-height: 30px; float: left; color: #fff;}
+        .flagMap{ width: 100%; height: 100%;}
+        .skewSpan i{ display: inline-block;  height: 20px; width: 2px; margin-right: 4px; background-color:#aaa; transform: skew(-15deg);}
+        .skewSpan .skewI1{width: 6px; margin-left: 5px;}
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="allDiv">
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            热门企业
+        </div>
+        <div id="topCompany" class="inSixDivInner"></div>
+    </div>
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            热门主题
+        </div>
+        <div id="topTitle" class="inSixDivInner">
+            <table>
+                <thead>
+                <tr>
+                    <th>标题</th>
+                    <th width="80px">频次</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            企业平均指数
+        </div>
+        <div id="avgCompanyNum" class="inSixDivInner"></div>
+    </div>
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            热门人物/企业
+        </div>
+        <div id="topPeople" class="inSixDivInner"></div>
+    </div>
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            热门组织
+        </div>
+        <div id="topOrg" class="inSixDivInner"></div>
+    </div>
+    <div class="inSixDiv">
+        <div class="listDivTit">
+            <span class="skewSpan"><i class="skewI1"></i><i class="skewI3"></i><i class="skewI2"></i></span>
+            热门地点
+        </div>
+        <div id="topLocation" class="inSixDivInner"></div>
+    </div>
+</div>
+
+<script>
+    $.ajax({
+        url:'http://202.85.223.75:8090/zpark/ZparkEnterpriseController/queryZparkSentiment',
+        type:'GET',
+        dataType:'json',
+        success:function(res){
+            console.log(res)
+            var a=[];
+            var b=[];
+            for(var i=0;i<res.Data.avgCompanyNum.length;i++){
+                a.push(res.Data.avgCompanyNum[i].key);
+                b.push(res.Data.avgCompanyNum[i].val);
+            }
+
+            createInfeedBars(a,b,'avgCompanyNum','right',{'dw':'w','nums':1});
+            var c=''
+            var d=[];
+            for(var i=0;i<res.Data.topTitle.length;i++){
+                c+=`<tr>
+                        <td>`+res.Data.topTitle[i].key+`</td>
+                        <td>`+res.Data.topTitle[i].val+`</td>
+                    </tr>`
+
+            }
+            $("#tbody").html(c)
+
+
+            var h=[];
+            var g=[];
+            for(var i=0;i<res.Data.topCompany.length;i++){
+                h.push(res.Data.topCompany[i].key);
+                g.push(res.Data.topCompany[i].val);
+            }
+            createInfeedBars(h,g,'topCompany','left',false);
+            createKeyWords(createWordsArray(res.Data.topPeople),'topPeople')
+            createKeyWords(createWordsArray(res.Data.topOrg),'topOrg')
+            createKeyWords(createWordsArray(res.Data.topLocation),'topLocation')
+
+        }
+    })
+    function createWordsArray(ds){
+        var d=[];
+        for(var i=0;i<ds.length;i++){
+            d.push({'name':ds[i].key,'value':ds[i].val})
+        }
+        return d;
+    }
+    const colors = ["#20e49f","#0bc785","#5cc3f0","#4189a9","#28a9e1","#6690f2","#0d6a92","#3469e4","#4866ab"];
+    const newColor=['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'];
+    function createKeyWords(data,dom){
+        var option = {
+            backgroundColor:'rgba(255,255,255,.1)',
+
+            "tooltip": {
+                "show": true,
+                "textStyle": {
+                    "fontSize": "16",
+                    "color": "#3c3c3c"
+                },
+                "backgroundColor": "#fff",
+                "borderColor": "#ddd",
+                "borderWidth": 1
+            },
+            "series": [{
+                "name": "关键词分布",
+                "type": "wordCloud",
+                "gridSize": 20,
+                textStyle: {
+                    normal: {
+                        color: function(v) {
+                            let color = ['#27D38A', '#FFCA1C', '#5DD1FA', '#F88E25','#47A0FF','#FD6565']
+                            let num =Math.floor(Math.random() * (5 + 1));
+
+                            return color[num];
+                        },
+                    },
+                },
+                "sizeRange": [12, 50],
+                "rotationRange": [0, 0],
+                "shape": "circle",
+                "autoSize": {
+                    "enable": true,
+                    "minSize": 18
+                },
+                "data": data
+            }]
+        }
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+
+    function createInfeedBars(a,b,dom,pos,obj){
+        var f=false,
+        r= [0,5,5,0];
+        if(pos=='right'){
+            f=true
+            r= [5,0,0,5]
+        }
+        var option = {
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {
+                    type : 'shadow'
+                }
+            },
+            grid: {
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                containLabel: true
+            },
+            xAxis:  {
+                inverse:f,
+
+                position: 'top',
+                type: 'value',
+                axisLabel: {
+
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#fff'
+                    }
+                },
+                splitLine: {
+                    show:false
+                },
+                formatter:function(val){
+                  if(obj){
+                      return (val/obj.nums)+obj.dw;
+                  }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                position:pos,
+                type: 'category',
+                data:a,
+                axisLabel: {
+                    position:pos,
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    position:pos,
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'bar',
+                    stack: '总量',
+                    barWidth: 10,
+                    itemStyle:{
+                        normal: {
+                            color: '#06d3cd',
+                            barBorderRadius: r,
+                        }
+                    },
+                    z:  10,
+                    data:b
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+
+    function createMoreRing(a,b,years,dom){
+        function ring(){
+            var a=[];
+            for (var i=0; i<b.length;i++){
+                a.push(  {
+                    name:years[i],
+                    type:'pie',
+                    radius: [i*12+10+'%',i*12+13+'%' ],
+                    hoverOffset: 3,
+                    label: {
+                        show:false,
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:b[i]
+                })
+            }
+            return a;
+        }
+        let  option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            color:newColor,
+            legend: {
+                orient: 'vertical',
+                x: 'right',
+                textStyle:{
+                    color:'#fff'
+                },
+                data:a
+            },
+            series: ring()
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
+    function createBarLine(category,rateData,barData,dom,obj){
+        var option = {
+            title: {
+                text: '',
+                x: 'center',
+                y: 0,
+                textStyle:{
+                    color:'#B4B4B4',
+                    fontSize:16,
+                    fontWeight:'normal',
+                },
+
+            },
+            tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                    type: "shadow",
+                    label: {
+                        show: true
+                    }
+                }
+            },
+            legend: {
+                show:false,
+                textStyle: {
+                    color: '#B4B4B4'
+                },
+                top:'7%',
+            },
+            grid:{
+                top:"20%",
+                bottom:'15%',
+                left:'10%',
+                right:'10%'
+
+            },
+            xAxis: {
+                data: category,
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4'
+                    }
+                },
+                axisTick:{
+                    show:false,
+                },
+            },
+            yAxis: [{
+                name: obj.lineDw,
+                nameTextStyle: {
+                    color: "#ebf8ac"
+                },
+                splitLine: {show: false},
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4',
+                    }
+                },
+
+                axisLabel:{
+                    formatter:'{value} ',
+                }
+            },
+                {
+                    name: obj.barDw,
+                    nameTextStyle: {
+                        color: "#ebf8ac"
+                    },
+                    splitLine: {show: false},
+                    axisLine: {
+                        lineStyle: {
+                            color: '#B4B4B4',
+                        }
+                    },
+                    axisLabel:{
+                        formatter:'{value} ',
+                    }
+                }],
+
+            series: [{
+                name: obj.barName,
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'none',
+                symbolSize: 8,
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {
+                        color:'#20e49f'
+                    },
+                },
+                data: rateData
+            },
+
+                {
+                    name:  obj.lineName,
+                    type: 'bar',
+                    barWidth: 10,
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: 5,
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#956FD4'},
+                                    {offset: 1, color: '#3EACE5'}
+                                ]
+                            )
+                        }
+                    },
+                    data: barData
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
+    function createNewRing(d,dom) {
+        var data =d
+        arrName = getArrayValue(data, "key");
+        arrValue = getArrayValue(data, "val");
+        sumValue = eval(arrValue.join('+'));
+        objData = array2obj(data, "key");
+        optionData = getData(data)
+        function getArrayValue(array, key) {
+            var key = key || "val";
+            var res = [];
+            if (array) {
+                array.forEach(function(t) {
+                    res.push(t[key]);
+                });
+            }
+            return res;
+        }
+
+        function array2obj(array,key) {
+            var resObj = {};
+            for(var i=0;i<array.length;i++){
+                resObj[array[i][key]] = array[i];
+            }
+            return resObj;
+        }
+
+        function getData(data) {
+            var res = {
+                series: [],
+                yAxis: []
+            };
+            for (let i = 0; i < data.length; i++) {
+                res.series.push({
+                    name: '',
+                    type: 'pie',
+                    clockWise: false, //顺时加载
+                    hoverAnimation: false, //鼠标移入变大
+                    radius: [72 - i * 11 + '%', 73 - i * 11 + '%'],
+                    center: ["40%", "55%"],
+                    label: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            borderWidth: 5,
+                            shadowBlur: 50,
+                            borderColor: '#5FC5F5',
+                            shadowColor: 'rgba(142,152,241, 0.6)'
+                        }
+                    },
+                    data: [
+                        {
+                            value: (data[i].val),
+                            name: data[i].key
+                        },
+                        {
+                            value: sumValue - data[i].val,
+                            name: '',
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    },
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    borderColor: 'rgba(0, 0, 0, 0)',
+                                    borderWidth: 0
+                                }
+                            },
+                            tooltip: {
+                                show: false
+                            },
+                            hoverAnimation: false
+                        }
+                    ]
+                });
+
+
+                res.yAxis.push(data[i].key+"  :"+data[i].val+"" );
+            }
+            return res;
+        }
+        var option = {
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                show: true,
+                trigger: "item",
+                formatter: "{b}:{c} "
+            },
+            color: ['rgb(24, 183, 142)', 'rgb(1, 179, 238)', 'rgb(22, 75, 205)', 'rgb(52, 52, 176)'],
+            grid: {
+                top: '15%',
+                bottom: '50%',
+                left: "42%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 12,
+                    },
+                    show: true
+                },
+                data: optionData.yAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: optionData.series
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createRing(d,dom) {
+        var data =d
+        arrName = getArrayValue(data, "key");
+        arrValue = getArrayValue(data, "val");
+        sumValue = eval(arrValue.join('+'))*100;
+        objData = array2obj(data, "key");
+        optionData = getData(data)
+        function getArrayValue(array, key) {
+            var key = key || "val";
+            var res = [];
+            if (array) {
+                array.forEach(function(t) {
+                    res.push(t[key]);
+                });
+            }
+            return res;
+        }
+
+        function array2obj(array,key) {
+            var resObj = {};
+            for(var i=0;i<array.length;i++){
+                resObj[array[i][key]] = array[i];
+            }
+            return resObj;
+        }
+
+        function getData(data) {
+            var res = {
+                series: [],
+                yAxis: []
+            };
+            for (let i = 0; i < data.length; i++) {
+                res.series.push({
+                    name: '',
+                    type: 'pie',
+                    clockWise: false, //顺时加载
+                    hoverAnimation: false, //鼠标移入变大
+                    radius: [72 - i * 15 + '%', 73 - i * 15 + '%'],
+                    center: ["40%", "55%"],
+                    label: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            borderWidth: 5,
+                            shadowBlur: 50,
+                            borderColor: '#5FC5F5',
+                            shadowColor: 'rgba(142,152,241, 0.6)'
+                        }
+                    },
+                    data: [
+                        {
+                            value: (data[i].val)*100,
+                            name: data[i].key
+                        },
+                        {
+                            value: sumValue - data[i].val,
+                            name: '',
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    },
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    borderColor: 'rgba(0, 0, 0, 0)',
+                                    borderWidth: 0
+                                }
+                            },
+                            tooltip: {
+                                show: false
+                            },
+                            hoverAnimation: false
+                        }
+                    ]
+                });
+
+
+                res.yAxis.push(data[i].key+"  :"+data[i].val*100+"%" );
+            }
+            return res;
+        }
+        var option = {
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                show: true,
+                trigger: "item",
+                formatter: "{b}:{c} %"
+            },
+            color: ['rgb(24, 183, 142)', 'rgb(1, 179, 238)', 'rgb(22, 75, 205)', 'rgb(52, 52, 176)'],
+            grid: {
+                top: '15%',
+                bottom: '55%',
+                left: "42%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 12,
+                    },
+                    show: true
+                },
+                data: optionData.yAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: optionData.series
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createMoreLine(a,b,dom) {
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function(point, params, dom, rect, size){
+                    //其中point为当前鼠标的位置，size中有两个属性：viewSize和contentSize，分别为外层div和tooltip提示框的大小
+                    var x = point[0];//
+                    var y = point[1];
+                    var viewWidth = size.viewSize[0];
+                    var viewHeight = size.viewSize[1];
+                    var boxWidth = size.contentSize[0];
+                    var boxHeight = size.contentSize[1];
+                    var posX = 0;//x坐标位置
+                    var posY = 0;//y坐标位置
+
+                    if(x<boxWidth){//左边放不开
+                        posX = 5;
+                    }else{//左边放的下
+                        posX = x-boxWidth;
+                    }
+
+                    if(y<boxHeight){//上边放不开
+                        posY = 5;
+                    }else{//上边放得下
+                        posY = y-boxHeight;
+                    }
+
+                    return [posX,posY];
+
+                }
+            },
+            color:colors,
+            legend: {
+                show:false,
+            },
+            grid: {
+                left: '5%',
+                right: '4%',
+                bottom: '15%',
+                containLabel: true
+            },
+
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+
+                },
+                axisLabel: {
+                    margin: 10,
+
+                    color: '#fff',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+                data:a
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                    color: '#fff'
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisLabel: {
+                    color: '#fff',
+                    formatter:function(value){
+                        return value+'k'
+                    },
+                    textStyle: {
+                        fontSize: 14
+                    },
+                },
+            },
+            series:b
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+
+    }
+    function createLineShadow(ys,ns,dom){
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'line',
+                    lineStyle: {
+                        color: '#206b7c',
+                        type: 'dotted'
+                    }
+                },
+                textStyle: {
+                    fontSize: 18,
+                },
+                formatter: "{b} :{c0}",
+            },
+            legend: {
+                top: '0',
+                right: '3%',
+                icon: "roundRect",
+                itemWidth: 12,
+                itemHeight: 2,
+                textStyle: {
+                    color: '#ffffff',
+                    fontStyle: 'normal',
+                    fontSize: 14,
+                    // fontFamily: 'CRegular',
+                    fontFamily: '黑体',
+                },
+            },
+            grid:{
+                top: '20%',
+                left:'10%',
+                right:'4%',
+                bottom:'15%'
+            },
+            xAxis: [{
+                type: 'category',
+                data:ys,
+                boundaryGap: false,
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+
+                },
+                splitLine: {
+                    type: 'category',
+                    show: false,
+                    lineStyle: {
+                        color: '#206b7c',
+                        opacity: 0.5,
+                        type: 'solid'
+                    }
+                },
+                axisLabel: {
+                    textStyle: {
+                        fontFamily: 'FZHTJW',
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+
+                },
+            }],
+            yAxis: [{
+                scale:true,
+                axisTick: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff',
+
+                    }
+
+                },
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#206b7c',
+                        opacity: 0.5,
+                        type: 'solid'
+                    }
+                },
+                axisLabel: {
+                    formatter:function(value){
+                        return (value/1000)+'k'
+
+                    },
+                    textStyle: {
+                        fontFamily: 'FZHTJW',
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+
+                },
+
+            }],
+            series: [{
+
+                type: 'line',
+                smooth: true,
+                symbol: "none",
+                lineStyle: {
+                    width: 2,
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#659bd2',
+                    }
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color: 'rgba(101,155,210,0.2)' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'rgba(101,155,210,0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
+                },
+                data: ns,
+            }]
+
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createWords(data,dom){
+        var option = {
+            backgroundColor:'rgba(255,255,255,.1)',
+
+            "tooltip": {
+                "show": false,
+            },
+            "series": [{
+                "name": "关键词分布",
+                "type": "wordCloud",
+                "gridSize": 20,
+                textStyle: {
+                    normal: {
+                        color: function(v) {
+                            let color = ['#27D38A',  '#5DD1FA','#47A0FF']
+                            let num =Math.floor(Math.random() * (2 + 1));
+
+                            return color[num];
+                        },
+                    },
+                },
+                "sizeRange": [12, 16],
+                "rotationRange": [0, 0],
+                "shape": "circle",
+                "autoSize": {
+                    "enable": true,
+                    "minSize": 12,
+                    'maxSize':16,
+                },
+                "data": data
+            }]
+        }
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createPie(a,b,dom,tit){
+        var option = {
+            tooltip : {
+
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+
+            },
+            legend: {
+                show:false,
+
+
+            },
+            color: ['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'],
+
+            series : [
+                {
+                    name:tit,
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['40%', '50%'],
+                    data:b,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+
+                }
+            ]
+        };
+
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createBar(a,b,dom,flag,ag){
+
+        if(ag===0){
+            ag=0
+        }else{
+            ag=45
+        }
+
+        var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#6ec2d9'
+        }, {
+            offset: 1,
+            color: '#3468bc'
+        }]);
+
+        var option = {
+
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: "{b}:{c} "
+            },
+            legend: {
+                show:false
+            },
+            grid: {
+                left: '14%',
+                right: '5%',
+                bottom: '25%',
+                top:'5%'
+            },
+            xAxis: {
+                type: 'category',
+                data:a,
+                axisLabel: {
+                    interval: 0,
+                    rotate:ag,
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter:function(val){
+                        if(flag==1){
+                            return val;
+                        }else{
+                            return (val/1000)+'k'
+                        }
+
+                    },
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                splitLine:{
+                    show:false
+                },
+                axisLine: {
+
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+
+            },
+            series: [{
+                name:'',
+                data: b,
+                type: 'bar',
+                barWidth: 10,
+                barGap: 1,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: [5, 5, 0, 0],
+                        color:'#3468bc'
+                    }
+                },
+            }]
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+    function createMoreBar(a,b,dom,flag,dw){
+
+        var colorSet =new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#6ec2d9'
+        }, {
+            offset: 1,
+            color: '#3468bc'
+        }]);
+        function moreBar(){
+            var a=[];
+            for(var i=0;i<b.length;i++){
+                a.push({
+                    name:'访问人次排名',
+                    data: b[i],
+                    type: 'bar',
+                    barWidth: 10,
+                    barGap: 1,
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: [5, 5, 0, 0],
+                            color:newColor[i]
+                        }
+                    },
+                })
+            }
+            return a;
+
+        }
+
+        var option = {
+
+            tooltip: {
+                trigger: 'axis',
+                formatter:function(val){
+                    var str=''
+                    for(var i=0;i<val.length;i++){
+                        str+=val[i].value+':'+dw+"</br>";
+                    }
+                    return str;
+                },
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                show:false
+            },
+            grid: {
+                left: '14%',
+                right: '5%',
+                bottom: '25%',
+                top:'5%'
+            },
+            xAxis: {
+                type: 'category',
+                data:a,
+                axisLabel: {
+
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter:function(val){
+                        if(flag==1){
+                            return val;
+                        }else{
+                            return (val/1000)+'k'
+                        }
+
+                    },
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#fff'
+                    }
+                },
+                splitLine:{
+                    show:false
+                },
+                axisLine: {
+
+                    lineStyle: {
+                        color: '#00A2FF',
+                        width: 2
+                    }
+                },
+
+            },
+            series: moreBar()
+        };
+        var myChart = echarts.init(document.getElementById(dom));
+        myChart.setOption(option);
+    }
+
+</script>
+</body>
+</html>
