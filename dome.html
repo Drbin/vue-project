@@ -33,13 +33,15 @@
 <body>
 
 <div id="publishedFinanV" style="width: 340px; height: 270px; float: left;"></div>
+<div id="publishedFinaWayV" style="width: 340px; height: 270px; float: left;"></div>
 <div id="requireFinaMoneyV" style="width: 340px; height: 270px; float: left;"></div>
+<div id="requireFinaHopeWayV" style="width: 340px; height: 270px; float: left;"></div>
 
 
 
 <script>
     $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkEnterpriseController/queryInvestAndFinancing',
+        url:'http://202.85.223.75:8090/zpark/ZparkEnterpriseController/queryZparkSentiment',
         type:'GET',
         dataType:'json',
         success:function(res){
@@ -53,17 +55,32 @@
             createPie(a,b,'publishedFinanV','已披露融资占比');
             var c=[];
             var d=[];
-            for(var i=0;i<res.Data.requireFinaMoneyV.length;i++){
-                c.push(res.Data.requireFinaMoneyV[i].key);
-                d.push({'name':res.Data.requireFinaMoneyV[i].key,'value':res.Data.requireFinaMoneyV[i].val});
+            for(var i=0;i<res.Data.publishedFinaWayV.length;i++){
+                c.push(res.Data.publishedFinaWayV[i].key);
+                d.push(res.Data.publishedFinaWayV[i].val);
             }
-            createPie(c,d,'requireFinaMoneyV','融资占比');
+            createInfeedBar(c,d,'publishedFinaWayV');
+            var e=[];
+            var f=[];
+            for(var i=0;i<res.Data.requireFinaMoneyV.length;i++){
+                e.push(res.Data.requireFinaMoneyV[i].key);
+                f.push({'name':res.Data.requireFinaMoneyV[i].key,'value':res.Data.requireFinaMoneyV[i].val});
+            }
+            createPie(e,f,'requireFinaMoneyV','融资占比');
+            var h=[];
+            var g=[];
+            for(var i=0;i<res.Data.requireFinaHopeWayV.length;i++){
+                h.push(res.Data.requireFinaHopeWayV[i].key);
+                g.push(res.Data.requireFinaHopeWayV[i].val);
+            }
+            createInfeedBar(h,g,'requireFinaHopeWayV');
         }
     })
 
     const colors = ["#20e49f","#0bc785","#5cc3f0","#4189a9","#28a9e1","#6690f2","#0d6a92","#3469e4","#4866ab"];
     const newColor=['#5EA6FE', '#45FBF7', '#48FF58', '#EAE809', '#FF7E3F', '#FF4746', '#E177F9', '#4E6BFF'];
-    function hometown(data){
+
+    function createInfeedBar(a,b,dom){
         var option = {
             tooltip : {
                 trigger: 'axis',
@@ -81,9 +98,7 @@
                 position: 'top',
                 type: 'value',
                 axisLabel: {
-                    formatter:function(value){
-                        return (value/1000)+'k'
-                    },
+
                     textStyle: {
                         fontSize: 14,
                         color: '#fff'
@@ -101,7 +116,7 @@
             },
             yAxis: {
                 type: 'category',
-                data:data.item,
+                data:a,
                 inverse:true,
                 axisLabel: {
                     textStyle: {
@@ -129,11 +144,11 @@
                         }
                     },
                     z:  10,
-                    data:data.value[0]
+                    data:b
                 }
             ]
         };
-        var myChart = echarts.init(document.getElementById("hometown"));
+        var myChart = echarts.init(document.getElementById(dom));
         myChart.setOption(option);
     }
 
