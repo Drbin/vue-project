@@ -157,7 +157,7 @@
     }
     });
     $.ajax({
-        url:'http://202.85.223.75:8090/zpark/ZparkTalentController/queryEducatioinV',
+        url:'http://202.85.223.75:8090/zpark/ZparkCooperateController/queryDomesticBranchCountByProvince',
         type:'GET',
         dataType:'json',
         success:function (res) {
@@ -168,7 +168,7 @@
                 b.push({'name':res.Data[i].key,'value':res.Data[i].val});
 
             }
-            createPie(a,b,'createSchool','学历要求');
+            createPie(a,b,'createSchool','数量统计');
         }
     });
     $.ajax({
