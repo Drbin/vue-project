@@ -45,7 +45,9 @@
     </style>
 </head>
 <body>
-<div class="allDiv">
+
+<script>
+    $("body").append(`<div class="allDiv">
     <div class="fivePanel">
         <div class="panel_list" id="panel1">
 
@@ -101,8 +103,7 @@
 
 
 
-</div>
-<script>
+</div>`)
     $.ajax({
         url:'http://202.85.223.75:8090/zpark/ZparkAreaPrewarnController/queryTradeIndexRegion',
         dataType:'json',
