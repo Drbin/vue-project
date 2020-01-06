@@ -4,7 +4,7 @@
       <router-link to="/">首页</router-link>
         <router-link to="/about">个人信息管理</router-link>
         <router-link to="/about">影片信息查询管理</router-link>
-        <router-link to="/about">购票信息</router-link>
+        <router-link to="/tickets">购票信息</router-link>
     </div>
     <div class="menu">
         <Menu/>
