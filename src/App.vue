@@ -6,9 +6,7 @@
         <router-link to="/about">影片信息查询管理</router-link>
         <router-link to="/tickets">购票信息</router-link>
     </div>
-    <div class="menu">
-        <Menu/>
-    </div>
+
     <div class="main">
       <router-view ></router-view>
     </div>
