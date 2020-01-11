@@ -2,9 +2,9 @@
   <div id="app">
     <div class="top">
       <router-link to="/">首页</router-link>
-        <router-link to="/about">个人信息</router-link>
-        <router-link to="/about">影片信息</router-link>
-        <router-link to="/tickets">购票信息</router-link>
+      <router-link to="/person">个人信息</router-link>
+      <router-link to="/information">影片信息</router-link>
+      <router-link to="/tickets">购票信息</router-link>
     </div>
 
     <div class="main">
