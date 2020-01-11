@@ -17,9 +17,9 @@ export default new Router({
             component:Index
         },
         {
-            path:'/about',
-            name:'About',
-            component:About
+            path:'/person',
+            name:'Person',
+            component:Person
 
         },
         {
