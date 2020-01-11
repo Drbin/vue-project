@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/template/index/Index'
-import Exam from '@/template/exam/Index'
+import Information from '@/template/information/Index'
 import Person from '@/template/person/Index'
 import Vote from '@/template/vote/Index'
 import Tickets from '@/template/tickets/Index'
@@ -29,9 +29,9 @@ export default new Router({
 
         },
         {
-            path:'/exam',
-            name:'Exam',
-            component:Exam
+            path:'/information',
+            name:'Information',
+            component:Information
 
         },{
             path:'/vote',
