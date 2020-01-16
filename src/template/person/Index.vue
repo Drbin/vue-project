@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="6">
+            <el-col :span="3" class="line-height-1">
                 <div class="grid-content">
                     影片名称：
                 </div>
@@ -11,9 +11,16 @@
                     <el-input v-model="input" placeholder="请输入内容"></el-input>
                 </div>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="2">
                 <div class="grid-content">
                     <el-button type="primary">搜索</el-button>
+                </div>
+
+            </el-col>
+            <el-col :span="2">
+
+                <div class="grid-content">
+                    <el-button type="primary">新增</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -85,6 +92,7 @@
 </script>
 
 <style scoped>
+    .line-height-1{line-height: 40px;}
     .el-row {
         margin-bottom: 20px;
     }
