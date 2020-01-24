@@ -25,7 +25,10 @@
             </el-col>
         </el-row>
         <el-row>
-
+            <el-col :span="12" class="line-height-1">
+                <div class="shadow-card">
+                </div>
+            </el-col>
         </el-row>
     </div>
 </template>
