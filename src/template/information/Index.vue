@@ -25,10 +25,10 @@
             </el-col>
         </el-row>
         <el-row>
-            <el-col :span="12" class="line-height-1">
+            <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
-                        <img src="">
+
                     </div>
                     <div class="text-card">
                         <h4>影片名称</h4>
