@@ -27,6 +27,9 @@
         <el-row>
             <el-col :span="12" class="line-height-1">
                 <div class="shadow-card">
+                    <div class="img-box">
+                        <img src="">
+                    </div>
                 </div>
             </el-col>
         </el-row>
