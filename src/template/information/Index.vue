@@ -30,6 +30,9 @@
                     <div class="img-box">
                         <img src="">
                     </div>
+                    <div class="text-card">
+                        <h4>影片名称</h4>
+                    </div>
                 </div>
             </el-col>
         </el-row>
@@ -73,6 +76,7 @@
 
 <style scoped>
 .shadow-card{
+    width:100%;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     height: 120px;
     margin-bottom: 20px;
