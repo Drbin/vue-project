@@ -46,11 +46,26 @@
 </script>
 
 <style scoped>
-.shadow-card{
-    width:100%;
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-    height: 120px;
-    margin-bottom: 20px;
-    position: relative;
-}
+
+    .shadow-card{
+        width:100%;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+        height: 160px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .img-box{
+        width: 200px; height: 140px;
+        float: left;
+        margin: 10px; box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    .text-card{
+        width: 100%; padding-left:240px ;
+        position: absolute;
+        right: 10px;
+        height: 150px;
+        top: 5px;
+        box-sizing: border-box;
+    }
 </style>
