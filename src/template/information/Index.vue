@@ -68,4 +68,5 @@
         top: 5px;
         box-sizing: border-box;
     }
+    .text-card h4{ height: 30px; line-height: 30px; font-size: 16px; text-align: left; font-weight: 600;}
 </style>
