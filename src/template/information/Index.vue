@@ -31,7 +31,10 @@
 
                     </div>
                     <div class="text-card">
-                        <h4>影片名称</h4>
+                        <h4>谁的名字</h4>
+                        <p>2019-1-29上映</p>
+                        <p>导演：新海诚</p>
+                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
                     </div>
                 </div>
             </el-col>
@@ -46,12 +49,12 @@
 </script>
 
 <style scoped>
-
+    .el-row{    margin-bottom: 20px;}
     .shadow-card{
         width:100%;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
         height: 160px;
-        margin-bottom: 20px;
+
         position: relative;
     }
     .img-box{
@@ -69,4 +72,5 @@
         box-sizing: border-box;
     }
     .text-card h4{ height: 30px; line-height: 30px; font-size: 16px; text-align: left; font-weight: 600;}
+    .text-card p{ height: 24px; line-height: 24px; font-size: 14px; text-align: left;}
 </style>
