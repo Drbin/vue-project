@@ -31,10 +31,11 @@
 
                     </div>
                     <div class="text-card">
-                        <h4>谁的名字</h4>
-                        <p>2019-1-29上映</p>
+                        <h4>谁的名字 <span>2019-1-29上映</span></h4>
+
                         <p>导演：新海诚</p>
                         <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <p>简介：</p>
                     </div>
                 </div>
             </el-col>
@@ -72,5 +73,6 @@
         box-sizing: border-box;
     }
     .text-card h4{ height: 30px; line-height: 30px; font-size: 16px; text-align: left; font-weight: 600;}
+    .text-card h4 span{font-size: 14px;font-weight: 200;}
     .text-card p{ height: 24px; line-height: 24px; font-size: 14px; text-align: left;}
 </style>
