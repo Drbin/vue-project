@@ -87,4 +87,9 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
       }
+    .appraise{ position: absolute;right: 5px; height: 20px; width: 300px;
+        bottom:0;}
+    .appraise ul{ list-style: none; width: 100%; height: 20px; float: left; text-align: right}
+    .appraise ul li{display: inline-block; height: 20px; line-height: 20px; text-align: left; margin-left: 20px; font-size: 12px;}
+    .appraise ul li a{ text-decoration :underline #409EFF; color: #409Eff; cursor: pointer; }
 </style>
