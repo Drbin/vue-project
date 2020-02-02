@@ -40,6 +40,7 @@
                                 <li><a>赞</a>(<span>100</span>)</li>
                                 <li><a>踩</a>(<span>100</span>)</li>
                                 <li><a>评价</a>(<span>100</span>)</li>
+                                <li><a>详情</a>(<span>100</span>)</li>
                             </ul>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
       }
-    .appraise{ position: absolute;right: 5px; height: 20px; width: 300px;
+    .appraise{ position: absolute;right: 5px; height: 20px; width: 700px;
         bottom:0;}
     .appraise ul{ list-style: none; width: 100%; height: 20px; float: left; text-align: right}
     .appraise ul li{display: inline-block; height: 20px; line-height: 20px; text-align: left; margin-left: 20px; font-size: 12px;}
