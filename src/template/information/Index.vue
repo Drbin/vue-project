@@ -39,7 +39,7 @@
                             <ul>
                                 <li><a>赞</a>(<span>100</span>)</li>
                                 <li><a>踩</a>(<span>100</span>)</li>
-                                <li><a to="/information/appraise">评价</a>(<span>100</span>)</li>
+                                <li><a to="/information/appraise"><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
                                 <li><a>详情</a>(<span>100</span>)</li>
                             </ul>
                         </div>
