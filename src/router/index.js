@@ -32,12 +32,15 @@ export default new Router({
         {
             path:'/information',
             name:'Information',
-            component:Information
+            component:Information,
+            children:[
+                {
+                    path:'/information/appraise',
+                    name:'Appraise',
+                    component:Appraise
 
-        }, {
-            path:'/appraise',
-            name:'Appraise',
-            component:Appraise
+                }
+            ]
 
         },{
             path:'/vote',
