@@ -5,7 +5,7 @@ import Information from '@/template/information/Index'
 import Person from '@/template/person/Index'
 import Vote from '@/template/vote/Index'
 import Tickets from '@/template/tickets/Index'
-import Appraise from '@/template/information/Appraise'
+import Appraise from '@/template/information/appraise'
 
 
 Vue.use(Router)
