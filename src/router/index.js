@@ -6,6 +6,7 @@ import Person from '@/template/person/Index'
 import Vote from '@/template/vote/Index'
 import Tickets from '@/template/tickets/Index'
 import Appraise from '@/template/information/appraise'
+import InfoMsg from '@/template/information/msg'
 
 
 Vue.use(Router)
@@ -38,6 +39,12 @@ export default new Router({
                     path:'/information/appraise',
                     name:'Appraise',
                     component:Appraise
+
+                },
+                {
+                    path:'/information/msg',
+                    name:'InfoMsg',
+                    component:InfoMsg
 
                 }
             ]
