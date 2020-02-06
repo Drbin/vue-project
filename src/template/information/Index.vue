@@ -39,9 +39,9 @@
                             <ul>
                                 <li><a>赞</a>(<span>100</span>)</li>
                                 <li><a>踩</a>(<span>100</span>)</li>
-                                <li><a><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
-                                <li><a>详情</a>(<span>100</span>)</li>
-                            </ul>
+                                <li><a><router-link to="/information/appraise">评价</router-link></a>(<span>100</span>)</li>
+                                <li><a><router-link to="/information/msg">详情</router-link></a>(<span>100</span>)</li>
+                             </ul>
                         </div>
                     </div>
                 </div>
