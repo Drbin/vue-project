@@ -35,6 +35,7 @@ export default new Router({
             name:'Information',
             component:Information,
             children:[
+
                 {
                     path:'/information/appraise',
                     name:'Appraise',
