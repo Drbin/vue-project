@@ -6,6 +6,7 @@ import Person from '@/template/person/Index'
 import Vote from '@/template/vote/Index'
 import Tickets from '@/template/tickets/Index'
 import Appraise from '@/template/information/appraise'
+import PerIndex from '@/template/person/Temp'
 
 
 Vue.use(Router)
@@ -20,7 +21,15 @@ export default new Router({
         {
             path:'/person',
             name:'Person',
-            component:Person
+            component:Person,
+            children:[
+                {
+                    path:'/person/',
+                    name:'PerIndex',
+                    component:PerIndex
+
+                }
+            ]
 
         },
         {
