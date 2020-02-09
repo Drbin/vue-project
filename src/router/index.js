@@ -7,6 +7,7 @@ import Vote from '@/template/vote/Index'
 import Tickets from '@/template/tickets/Index'
 import Appraise from '@/template/information/appraise'
 import PerIndex from '@/template/person/Temp'
+import PerAdd from '@/template/person/Add'
 
 
 Vue.use(Router)
@@ -27,6 +28,12 @@ export default new Router({
                     path:'/person/',
                     name:'PerIndex',
                     component:PerIndex
+
+                },
+                {
+                    path:'/person/add',
+                    name:'PerAdd',
+                    component:PerAdd
 
                 }
             ]
