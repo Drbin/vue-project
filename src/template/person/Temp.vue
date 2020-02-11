@@ -20,7 +20,7 @@
             <el-col :span="2">
 
                 <div class="grid-content">
-                    <el-button type="primary"><router-link class="add_person" to="/person/add" exact>新增</router-link></el-button>
+                    <el-button type="primary"><router-link class="add_person" to="/Person/add" exact>新增</router-link></el-button>
                 </div>
             </el-col>
         </el-row>

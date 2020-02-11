@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "Tickets",
+        name: "Person" ,
         data() {
             return {
                 input: '',
