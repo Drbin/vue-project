@@ -20,18 +20,18 @@ export default new Router({
             component:Index
         },
         {
-            path:'/person',
+            path:'/Person/',
             name:'Person',
             component:Person,
             children:[
                 {
-                    path:'/person/',
+                    path:'/Person/',
                     name:'PerIndex',
                     component:PerIndex
 
                 },
                 {
-                    path:'/person/add',
+                    path:'/Person/add',
                     name:'PerAdd',
                     component:PerAdd
 
