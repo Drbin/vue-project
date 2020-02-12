@@ -6,7 +6,7 @@
                     姓名：
                 </div>
             </el-col>
-            <el-col :span="21">
+            <el-col :span="8">
                 <div class="grid-content ">
                     <el-input  placeholder="请输入姓名"></el-input>
                 </div>
@@ -18,7 +18,19 @@
                     手机号：
                 </div>
             </el-col>
-            <el-col :span="21">
+            <el-col :span="8">
+                <div class="grid-content ">
+                    <el-input v-model="input" placeholder="请输入手机号"></el-input>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="3" class="line-height-1">
+                <div class="grid-content">
+                    手机号：
+                </div>
+            </el-col>
+            <el-col :span="8">
                 <div class="grid-content ">
                     <el-input v-model="input" placeholder="请输入手机号"></el-input>
                 </div>
