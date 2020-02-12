@@ -3,22 +3,25 @@
         <el-row>
             <el-col :span="3" class="line-height-1">
                 <div class="grid-content">
-                    影片名称：
+                    姓名：
                 </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="21">
                 <div class="grid-content ">
-                    <el-input v-model="input" placeholder="请输入内容"></el-input>
+                    <el-input  placeholder="请输入姓名"></el-input>
                 </div>
             </el-col>
-            <el-col :span="2">
+        </el-row>
+        <el-row>
+            <el-col :span="3" class="line-height-1">
                 <div class="grid-content">
-                    <el-button type="primary">搜索</el-button>
+                    手机号：
                 </div>
-
             </el-col>
-            <el-col :span="2">
-
+            <el-col :span="21">
+                <div class="grid-content ">
+                    <el-input v-model="input" placeholder="请输入手机号"></el-input>
+                </div>
             </el-col>
         </el-row>
     </div>
@@ -31,5 +34,8 @@
 </script>
 
 <style scoped>
-
+    .line-height-1{line-height: 40px;}
+    .el-row {
+        margin-bottom: 20px;
+    }
 </style>

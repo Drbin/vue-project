@@ -26,13 +26,13 @@ export default new Router({
             children:[
                 {
                     path:'/Person/',
-                    name:'PerIndex',
+                    name:'',
                     component:PerIndex
 
                 },
                 {
                     path:'/Person/add',
-                    name:'PerAdd',
+                    name:'add',
                     component:PerAdd
 
                 }

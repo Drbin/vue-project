@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="top">
-      <router-link to="/">首页</router-link>
-      <router-link to="/Person">个人信息</router-link>
-      <router-link to="/information">影片信息</router-link>
-      <router-link to="/tickets">购票信息</router-link>
+      <router-link to="/" exact>首页</router-link>
+      <router-link to="/Person" >个人信息</router-link>
+      <router-link to="/information" >影片信息</router-link>
+      <router-link to="/tickets" >购票信息</router-link>
     </div>
 
     <div class="main">
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style>
-  *{padding: 0; margin: 0;}
+*{padding: 0; margin: 0;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,5 +42,7 @@ export default {
 }
 .top a{ color: #666; margin: 0 10px; font-size:14px ; text-decoration: none;}
 .top a.router-link-exact-active{color: #409eff}
+.top a.router-link-active{color: #409eff;}
+
 .main{ width: 100%; float: left;}
 </style>
