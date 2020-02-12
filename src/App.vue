@@ -34,11 +34,12 @@ export default {
 
 }
 .top{
+  position: fixed;
   height: 70px;
   line-height: 70px;
-  float: left;
+  left: 0;
+  top:0;
   width: 100%;
-  margin-bottom: 30px;
   box-shadow: 0 0 12px #ccc;
 
 }
@@ -46,5 +47,5 @@ export default {
 .top a.router-link-exact-active{color: #409eff}
 .top a.router-link-active{color: #409eff;}
 
-.main{ width: 100%; float: left;}
+.main{ width: 100%; float: left; margin-top: 100px;}
 </style>
