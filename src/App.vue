@@ -38,6 +38,8 @@ export default {
   line-height: 70px;
   float: left;
   width: 100%;
+  margin-bottom: 30px;
+  box-shadow: 0 0 12px #ccc;
 
 }
 .top a{ color: #666; margin: 0 10px; font-size:14px ; text-decoration: none;}
