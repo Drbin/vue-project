@@ -35,6 +35,8 @@ export default {
 }
 .top{
   position: fixed;
+  background: #fff;
+  z-index: 99;
   height: 70px;
   line-height: 70px;
   left: 0;
