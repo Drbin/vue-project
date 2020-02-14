@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/template/index/Index'
+import Index from '@/template/front/Index'
+import IndexBase from '@/template/index/Index'
+import Back from '@/template/back/Index'
 import Information from '@/template/information/Index'
 import Person from '@/template/person/Index'
 import Vote from '@/template/vote/Index'
@@ -17,7 +19,39 @@ export default new Router({
         {
             path:'/',
             name:'Index',
-            component:Index
+            component:Index,
+            children:[
+                {
+                    path:'/',
+                    name:'IndexBase',
+                    component:IndexBase,
+                },
+                {
+                    path:'/Person/',
+                    name:'Person',
+                    component:Person,
+                    children:[
+                        {
+                            path:'/Person/',
+                            name:'',
+                            component:PerIndex
+
+                        },
+                        {
+                            path:'/Person/add',
+                            name:'add',
+                            component:PerAdd
+
+                        }
+                    ]
+
+                },
+            ]
+        },
+        {
+            path:'/Back',
+            name:'Back',
+            component:Back
         },
         {
             path:'/Person/',
