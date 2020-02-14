@@ -28,7 +28,7 @@
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
-
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
                     </div>
                     <div class="text-card">
                         <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
@@ -51,7 +51,7 @@
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
-
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
                     </div>
                     <div class="text-card">
                         <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
@@ -74,7 +74,7 @@
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
-
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
                     </div>
                     <div class="text-card">
                         <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
@@ -97,7 +97,7 @@
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
-
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
                     </div>
                     <div class="text-card">
                         <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
@@ -116,6 +116,99 @@
                 </div>
             </el-col>
         </el-row>
+        <el-row>
+            <el-col :span="24" class="line-height-1">
+                <div class="shadow-card">
+                    <div class="img-box">
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
+                    </div>
+                    <div class="text-card">
+                        <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
+                        <p>导演：新海诚</p>
+                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <p>简介：《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。</p>
+                        <div class="appraise">
+                            <ul>
+                                <li><a>赞</a>(<span>100</span>)</li>
+                                <li><a>踩</a>(<span>100</span>)</li>
+                                <li><a><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
+                                <li><a>详情</a>(<span>100</span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24" class="line-height-1">
+                <div class="shadow-card">
+                    <div class="img-box">
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
+                    </div>
+                    <div class="text-card">
+                        <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
+                        <p>导演：新海诚</p>
+                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <p>简介：《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。</p>
+                        <div class="appraise">
+                            <ul>
+                                <li><a>赞</a>(<span>100</span>)</li>
+                                <li><a>踩</a>(<span>100</span>)</li>
+                                <li><a><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
+                                <li><a>详情</a>(<span>100</span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24" class="line-height-1">
+                <div class="shadow-card">
+                    <div class="img-box">
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
+                    </div>
+                    <div class="text-card">
+                        <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
+                        <p>导演：新海诚</p>
+                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <p>简介：《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。</p>
+                        <div class="appraise">
+                            <ul>
+                                <li><a>赞</a>(<span>100</span>)</li>
+                                <li><a>踩</a>(<span>100</span>)</li>
+                                <li><a><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
+                                <li><a>详情</a>(<span>100</span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24" class="line-height-1">
+                <div class="shadow-card">
+                    <div class="img-box">
+                        <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
+                    </div>
+                    <div class="text-card">
+                        <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
+                        <p>导演：新海诚</p>
+                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <p>简介：《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。</p>
+                        <div class="appraise">
+                            <ul>
+                                <li><a>赞</a>(<span>100</span>)</li>
+                                <li><a>踩</a>(<span>100</span>)</li>
+                                <li><a><router-link to="/person">评价</router-link></a>(<span>100</span>)</li>
+                                <li><a>详情</a>(<span>100</span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
@@ -141,6 +234,7 @@
         margin: 10px; box-sizing: border-box;
         border: 1px solid #ccc;
     }
+    .img-box img{ width: 100%; height: 100%;}
     .text-card{
         width: 100%; padding-left:240px ;
         position: absolute;
@@ -159,7 +253,7 @@
         -webkit-box-orient: vertical;
       }
     .appraise{ position: absolute;right: 5px; height: 20px; width: 700px;
-        bottom:0;}
+        bottom:10px;}
     .appraise ul{ list-style: none; width: 100%; height: 20px; float: left; text-align: right}
     .appraise ul li{display: inline-block; height: 20px; line-height: 20px; text-align: left; margin-left: 20px; font-size: 12px;}
     .appraise ul li a{ text-decoration :underline #409EFF; color: #409Eff; cursor: pointer; }
