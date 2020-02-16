@@ -20,5 +20,21 @@
 </script>
 
 <style scoped>
+    .top{
+        position: fixed;
+        background: #fff;
+        z-index: 99;
+        height: 70px;
+        line-height: 70px;
+        left: 0;
+        top:0;
+        width: 100%;
+        box-shadow: 0 0 12px #ccc;
+
+    }
+    .top a{ color: #666; margin: 0 10px; font-size:14px ; text-decoration: none;}
+    .top a.router-link-exact-active{color: #409eff}
+    .top a.router-link-active{color: #409eff;}
+    .main{ width: 1200px; margin: 100px auto ;}
 
 </style>
