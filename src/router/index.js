@@ -10,6 +10,7 @@ import Tickets from '@/template/tickets/Index'
 import Appraise from '@/template/information/appraise'
 import PerIndex from '@/template/person/Temp'
 import PerAdd from '@/template/person/Add'
+import NotFound from '@/template/other/404'
 
 
 Vue.use(Router)
@@ -97,6 +98,15 @@ export default new Router({
             name:'Vote',
             component:Vote
 
+        },
+        {
+            path: "/404",
+            name: "NotFound",
+            component: NotFound
+        },{
+            path: "*",
+            redirect: "/404"
         }
+
     ]
 })
