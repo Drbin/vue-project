@@ -47,6 +47,51 @@ export default new Router({
                     ]
 
                 },
+                {
+                    path:'/Person/',
+                    name:'Person',
+                    component:Person,
+                    children:[
+                        {
+                            path:'/Person/',
+                            name:'',
+                            component:PerIndex
+
+                        },
+                        {
+                            path:'/Person/add',
+                            name:'add',
+                            component:PerAdd
+
+                        }
+                    ]
+
+                },
+                {
+                    path:'/tickets',
+                    name:'Tickets',
+                    component:Tickets
+
+                },
+                {
+                    path:'/information',
+                    name:'Information',
+                    component:Information,
+                    children:[
+                        {
+                            path:'/information/appraise',
+                            name:'Appraise',
+                            component:Appraise
+
+                        }
+                    ]
+
+                },{
+                    path:'/vote',
+                    name:'Vote',
+                    component:Vote
+
+                },
             ]
         },
         {
@@ -54,51 +99,7 @@ export default new Router({
             name:'Back',
             component:Back
         },
-        {
-            path:'/Person/',
-            name:'Person',
-            component:Person,
-            children:[
-                {
-                    path:'/Person/',
-                    name:'',
-                    component:PerIndex
 
-                },
-                {
-                    path:'/Person/add',
-                    name:'add',
-                    component:PerAdd
-
-                }
-            ]
-
-        },
-        {
-            path:'/tickets',
-            name:'Tickets',
-            component:Tickets
-
-        },
-        {
-            path:'/information',
-            name:'Information',
-            component:Information,
-            children:[
-                {
-                    path:'/information/appraise',
-                    name:'Appraise',
-                    component:Appraise
-
-                }
-            ]
-
-        },{
-            path:'/vote',
-            name:'Vote',
-            component:Vote
-
-        },
         {
             path: "/404",
             name: "NotFound",
