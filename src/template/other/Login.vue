@@ -7,7 +7,7 @@
                         账号：
                     </div>
                 </el-col>
-                <el-col :span="16">
+                <el-col :span="14">
                     <div class="grid-content ">
                         <el-input v-model="input" placeholder="请输入手机号"></el-input>
                     </div>
@@ -19,7 +19,7 @@
                         密码：
                     </div>
                 </el-col>
-                <el-col :span="16">
+                <el-col :span="14">
                     <div class="grid-content ">
                         <el-input v-model="input" type="password" placeholder="请输入手机号"></el-input>
                     </div>
