@@ -1,6 +1,7 @@
 <template>
     <div class="login_box">
         <div class="login_box_inner">
+            <h1>用户登录</h1>
             <el-row>
                 <el-col :span="8" class="line-height-1">
                     <div class="grid-content">
@@ -26,7 +27,9 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-button type="primary">登录</el-button>
+                <div class="grid-content ">
+                    <el-button type="primary">登录</el-button>
+                </div>
 
             </el-row>
         </div>
@@ -41,7 +44,9 @@
 
 <style scoped>
     .login_box{ width: 100%; height: 100%; float: left;}
-    .login_box_inner{ width: 600px; height: 300px; position: absolute; left: 50%; top: 50%; margin-top: -150px;  margin-left: -300px; box-shadow: 0 0 30px #ccc; border-radius: 10px; }
-
+    .login_box_inner{ width: 600px; height: 300px; position: absolute; left: 50%; top: 150px;   margin-left: -300px; box-shadow: 0 0 30px #ccc; border-radius: 10px; }
+    .el-row{ margin-bottom: 20px; }
+    .line-height-1{line-height: 40px;}
+    .el-button{ width: 85%;}
 
 </style>
