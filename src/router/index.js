@@ -11,6 +11,7 @@ import Appraise from '@/template/front/information/appraise'
 import PerIndex from '@/template/front/person/Temp'
 import PerAdd from '@/template/front/person/Add'
 import NotFound from '@/template/other/404'
+import Login from '@/template/other/Login'
 
 
 Vue.use(Router)
@@ -99,12 +100,17 @@ export default new Router({
             name:'Back',
             component:Back
         },
-
+        {
+            path: "/Login",
+            name: "Login",
+            component: Login
+        },
         {
             path: "/404",
             name: "NotFound",
             component: NotFound
-        },{
+        },
+        {
             path: "*",
             redirect: "/404"
         }
