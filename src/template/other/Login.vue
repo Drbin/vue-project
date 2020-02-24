@@ -1,7 +1,7 @@
 <template>
     <div class="login_box">
         <div class="login_box_inner">
-            <h1>用户登录</h1>
+            <h1 class="login_tit">用户登录</h1>
             <el-row>
                 <el-col :span="8" class="line-height-1">
                     <div class="grid-content">
@@ -26,7 +26,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-row>
+            <el-row class="top_input">
                 <div class="grid-content ">
                     <el-button type="primary">登录</el-button>
                 </div>
@@ -43,10 +43,12 @@
 </script>
 
 <style scoped>
+    .login_tit{box-shadow: 0 0 5px #ccc; line-height: 60px; margin-bottom: 20px; font-weight: 600; font-size: 24px;}
     .login_box{ width: 100%; height: 100%; float: left;}
-    .login_box_inner{ width: 600px; height: 300px; position: absolute; left: 50%; top: 150px;   margin-left: -300px; box-shadow: 0 0 30px #ccc; border-radius: 10px; }
+    .login_box_inner{ width: 600px; height: 300px; position: absolute; left: 50%; top: 150px;   margin-left: -300px; box-shadow: 0 0 30px #ccc; border-radius:0 0 10pxWWW 10px; }
     .el-row{ margin-bottom: 20px; }
     .line-height-1{line-height: 40px;}
     .el-button{ width: 85%;}
+    .top_input{ margin-top: 40px;}
 
 </style>
