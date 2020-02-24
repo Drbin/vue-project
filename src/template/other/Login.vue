@@ -1,6 +1,6 @@
 <template>
     <div class="login_box">
-        <div id="id"></div>
+        <div id="id">{{username}}</div>
         <div class="login_box_inner">
             <h1 class="login_tit">用户登录</h1>
             <el-row>
@@ -67,7 +67,7 @@
         },
         methods:{
             submit:function () {
-               window.console.log(this.username)
+               alert(this.username)
             }
         }
     }
