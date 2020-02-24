@@ -10,7 +10,7 @@
                 </el-col>
                 <el-col :span="14">
                     <div class="grid-content ">
-                        <el-input v-model="input" placeholder="请输入手机号"></el-input>
+                        <el-input v-model="username" placeholder="输入账号"></el-input>
                     </div>
                 </el-col>
             </el-row>
@@ -22,7 +22,7 @@
                 </el-col>
                 <el-col :span="14">
                     <div class="grid-content ">
-                        <el-input v-model="input" type="password" placeholder="请输入手机号"></el-input>
+                        <el-input v-model="telCode" type="password" placeholder="输入手机号"></el-input>
                     </div>
                 </el-col>
             </el-row>
@@ -34,7 +34,7 @@
                 </el-col>
                 <el-col :span="7">
                     <div class="grid-content ">
-                        <el-input v-model="input" type="password" placeholder="请输入手机号"></el-input>
+                        <el-input v-model="ver" type="password" placeholder="输入验证码"></el-input>
                     </div>
                 </el-col>
                 <el-col :span="7">
@@ -55,7 +55,15 @@
 
 <script>
     export default {
-        name: "Login"
+        name: "Login",
+        data() {
+            return {
+                username: '',
+                telCode:'',
+                ver:''
+
+            }
+        }
     }
 </script>
 
