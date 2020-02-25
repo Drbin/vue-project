@@ -16,13 +16,10 @@
                 time: '',
                 date: ''
             }
-
         },
         mounted(){
             this.updateTime();
             setInterval(this.updateTime, 1000);
-
-
         },
         methods:{
             updateTime:function () {
@@ -40,7 +37,6 @@
                 }
                 return (zero + num).slice(-digit);
             }
-
         }
     }
 
@@ -80,5 +76,5 @@
         font-size: 12px;
         padding: 20px 0 0;
     }
-    .center_body .text a{ color: #fff;}
+    .center_body .text a{ color: #fff;text-decoration: none;}
 </style>
