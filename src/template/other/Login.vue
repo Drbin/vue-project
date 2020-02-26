@@ -23,7 +23,7 @@
                 </el-col>
                 <el-col :span="14">
                     <div class="grid-content ">
-                        <el-input v-model="telCode" type="password" placeholder="输入手机号"></el-input>
+                        <el-input v-model="pwd" type="password" placeholder="输入密码"></el-input>
                     </div>
                 </el-col>
             </el-row>
@@ -60,13 +60,18 @@
         data() {
             return {
                 username: '',
-                telCode:'',
+                pwd:'',
                 ver:''
 
             }
         },
         methods:{
             submit:function () {
+                if(this.username===""||this.pwd===""||this.ver===""){
+                    return false;
+                }else{
+
+                }
                alert(this.username)
             }
         }
