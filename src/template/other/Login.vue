@@ -6,7 +6,7 @@
             <el-row>
                 <el-col :span="8" class="line-height-1">
                     <div class="grid-content">
-                        账号：
+                        账&nbsp;&nbsp;号：
                     </div>
                 </el-col>
                 <el-col :span="14">
@@ -18,7 +18,7 @@
             <el-row>
                 <el-col :span="8" class="line-height-1">
                     <div class="grid-content">
-                        密码：
+                        密&nbsp;&nbsp;码：
                     </div>
                 </el-col>
                 <el-col :span="14">
@@ -70,9 +70,8 @@
                 if(this.username===""||this.pwd===""||this.ver===""){
                     return false;
                 }else{
-
+                    return  false
                 }
-               alert(this.username)
             }
         }
     }
