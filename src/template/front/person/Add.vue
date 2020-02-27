@@ -8,7 +8,7 @@
             </el-col>
             <el-col :span="8">
                 <div class="grid-content ">
-                    <el-input  placeholder="请输入姓名"></el-input>
+                    <el-input v-model="name"  placeholder="请输入姓名"></el-input>
                 </div>
             </el-col>
         </el-row>
@@ -32,7 +32,7 @@
             </el-col>
             <el-col :span="8">
                 <div class="grid-content ">
-                    <el-input v-model="input" placeholder="请输入手机号"></el-input>
+                    <el-input v-model="telCode" placeholder="请输入手机号"></el-input>
                 </div>
             </el-col>
         </el-row>
@@ -41,7 +41,13 @@
 
 <script>
     export default {
-        name: "Add"
+        name: "Add",
+        data(){
+            return {
+                telCode:'',
+                name:''
+            }
+        }
     }
 </script>
 
