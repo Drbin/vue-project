@@ -27,12 +27,12 @@
         <el-row>
             <el-col :span="3" class="line-height-1">
                 <div class="grid-content">
-                    手机号：
+                    备注：
                 </div>
             </el-col>
             <el-col :span="8">
                 <div class="grid-content ">
-                    <el-input v-model="telCode" placeholder="请输入手机号"></el-input>
+                    <el-input v-model="note" placeholder="请输入备注"></el-input>
                 </div>
             </el-col>
         </el-row>
@@ -45,7 +45,8 @@
         data(){
             return {
                 telCode:'',
-                name:''
+                name:'',
+                note:''
             }
         }
     }
