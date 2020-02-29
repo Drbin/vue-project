@@ -20,7 +20,7 @@
             <el-col :span="2">
 
                 <div class="grid-content">
-                    <el-button type="primary">新增</el-button>
+                    <el-button type="primary"><router-link class="add_person" to="/Person/add" exact>新增</router-link></el-button>
                 </div>
             </el-col>
         </el-row>
@@ -58,12 +58,13 @@
 
             </el-col>
         </el-row>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "Tickets",
+        name: "Temp",
         data() {
             return {
                 input: '',
@@ -92,6 +93,7 @@
 </script>
 
 <style scoped>
+    .add_person{ text-decoration: none; color: #fff;}
     .line-height-1{line-height: 40px;}
     .el-row {
         margin-bottom: 20px;
