@@ -1,5 +1,11 @@
 <template>
-    <div></div>
+    <div>
+        <el-row>
+            <el-col :span="3">
+                详情
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script>
