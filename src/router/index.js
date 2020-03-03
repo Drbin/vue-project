@@ -4,10 +4,12 @@ import Index from '@/template/front/Index'
 import IndexBase from '@/template/front/index/Index'
 import Back from '@/template/back/Index'
 import Information from '@/template/front/information/Index'
+import Info from '@/template/front/information/info'
+import Appraise from '@/template/front/information/appraise'
+
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
 import Tickets from '@/template/front/tickets/Index'
-import Appraise from '@/template/front/information/appraise'
 import PerIndex from '@/template/front/person/Temp'
 import PerAdd from '@/template/front/person/Add'
 import NotFound from '@/template/other/404'
@@ -48,26 +50,7 @@ export default new Router({
                     ]
 
                 },
-                {
-                    path:'/Person/',
-                    name:'Person',
-                    component:Person,
-                    children:[
-                        {
-                            path:'/Person/',
-                            name:'',
-                            component:PerIndex
 
-                        },
-                        {
-                            path:'/Person/add',
-                            name:'add',
-                            component:PerAdd
-
-                        }
-                    ]
-
-                },
                 {
                     path:'/tickets',
                     name:'Tickets',
@@ -80,11 +63,15 @@ export default new Router({
                     component:Information,
                     children:[
                         {
-                            path:'/information/appraise',
+                            path:'/information/',
                             name:'Appraise',
                             component:Appraise
-
-                        }
+                        },
+                        {
+                            path:'/information/info',
+                            name:'Info',
+                            component:Info
+                        },
                     ]
 
                 },{
