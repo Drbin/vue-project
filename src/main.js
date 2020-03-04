@@ -3,9 +3,9 @@ import App from './App.vue'
 import ElementUI,{ Col,Row,Button,Link,Radio, RadioGroup, Timeline,TimelineItem,  Carousel,CarouselItem ,Submenu,MenuItem,MenuItemGroup,Menu,Input,Table,TableColumn} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
+import axios from 'axios'
 
-
-
+Vue.prototype.$http=axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.component(Input.name, Input)
