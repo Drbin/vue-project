@@ -46,7 +46,7 @@
             </el-row>
             <el-row class="top_input">
                 <div class="grid-content ">
-                    <el-button @:click="submit" type="primary">登录</el-button>
+                    <el-button v-on:click="submit" type="primary">登录</el-button>
                 </div>
 
             </el-row>
@@ -70,6 +70,8 @@
                 if(this.username===""||this.pwd===""||this.ver===""){
                     return false;
                 }else{
+                    sessionStorage.setItem("token", 'true');
+                    this.$router.push({path:'/'});
                     return  false
                 }
             }
