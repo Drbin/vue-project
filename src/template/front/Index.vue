@@ -16,14 +16,7 @@
 <script>
     export default {
         name: "Index",
-        mounted(){
-          this.tanchu()
-        },
-        methods:{
-            tanchu:function () {
-                window.console.log(1)
-            }
-        }
+
     }
 </script>
 
