@@ -26,25 +26,19 @@ const router = new Router({
             path:'/',
             name:'Index',
             component:Index,
-            meta:{
-                requireAuth: true
-            },
+
             children:[
                 {
                     path:'/',
                     name:'IndexBase',
                     component:IndexBase,
-                    meta:{
-                        requireAuth: true
-                    },
+
                 },
                 {
                     path:'/Person/',
                     name:'Person',
                     component:Person,
-                    meta:{
-                        requireAuth: true
-                    },
+
                     children:[
                         {
                             path:'/Person/',
@@ -59,9 +53,7 @@ const router = new Router({
                             path:'/Person/add',
                             name:'add',
                             component:PerAdd,
-                            meta:{
-                                requireAuth: true
-                            },
+
 
                         }
                     ]
@@ -72,18 +64,14 @@ const router = new Router({
                     path:'/tickets',
                     name:'Tickets',
                     component:Tickets,
-                    meta:{
-                        requireAuth: true
-                    },
+
 
                 },
                 {
                     path:'/information',
                     name:'Information',
                     component:Information,
-                    meta:{
-                        requireAuth: true
-                    },
+
                     children:[
                         {
                             path:'/information/',
@@ -97,9 +85,7 @@ const router = new Router({
                             path:'/information/info',
                             name:'Info',
                             component:Info,
-                            meta:{
-                                requireAuth: true
-                            },
+
                         },
                     ]
 
@@ -107,9 +93,7 @@ const router = new Router({
                     path:'/vote',
                     name:'Vote',
                     component:Vote,
-                    meta:{
-                        requireAuth: true
-                    },
+
 
                 },
             ]
