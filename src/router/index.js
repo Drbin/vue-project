@@ -6,6 +6,7 @@ import Back from '@/template/back/Index'
 import Information from '@/template/front/information/index'
 import Info from '@/template/front/information/info'
 import Appraise from '@/template/front/information/appraise'
+import Audit from '@/template/front/back/audit'
 
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
@@ -105,6 +106,13 @@ const router = new Router({
             meta:{
                 requireAuth: true
             },
+            children:[
+                {
+                    path: "/Back/Audit",
+                    name: "Audit",
+                    component: Audit
+                },
+            ]
         },
         {
             path: "/Login",
