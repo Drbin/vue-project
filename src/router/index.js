@@ -7,6 +7,7 @@ import Information from '@/template/front/information/index'
 import Info from '@/template/front/information/info'
 import Appraise from '@/template/front/information/appraise'
 import Audit from '@/template/back/config/audit'
+import Page from '@/template/back/config/page'
 
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
@@ -45,9 +46,6 @@ const router = new Router({
                             path:'/Person/',
                             name:'',
                             component:PerIndex,
-                            meta:{
-                                requireAuth: true
-                            },
 
                         },
                         {
@@ -65,8 +63,6 @@ const router = new Router({
                     path:'/tickets',
                     name:'Tickets',
                     component:Tickets,
-
-
                 },
                 {
                     path:'/information',
@@ -78,9 +74,6 @@ const router = new Router({
                             path:'/information/',
                             name:'Appraise',
                             component:Appraise,
-                            meta:{
-                                requireAuth: true
-                            },
                         },
                         {
                             path:'/information/info',
@@ -111,6 +104,11 @@ const router = new Router({
                     path: "/Back/Audit",
                     name: "Audit",
                     component: Audit
+                },
+                {
+                    path: "/Back/Page",
+                    name: "Page",
+                    component: Page
                 },
             ]
         },
