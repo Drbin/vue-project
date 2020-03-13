@@ -5,7 +5,7 @@
                 <el-menu default-active="2" class="el-menu-vertical-demo menu_left">
                     <el-menu-item index="2">
                        
-                        <router-link slot="title" to="/Back/Page">
+                        <router-link slot="title" to="/Back/">
                             <i class="el-icon-house"></i>
                             <span >系统主页</span>
                         </router-link>
