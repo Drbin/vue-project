@@ -1,5 +1,6 @@
 <template>
-    <div>index
+    <div>
+        <input v-model="keyData" />
         <addData/>
 
     </div>
@@ -9,6 +10,12 @@
     import addData from '@/template/back/assembly/addData'
     export default {
         name: "index",
+        data(){
+            return {
+                keyData:'',
+            }
+           
+        },
         components: {
             addData
         },
