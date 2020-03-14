@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input v-model="keyData" />
+        <input v-model="keyData" :addDatas='keyData' />
         <addData/>
 
     </div>

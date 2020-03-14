@@ -1,11 +1,21 @@
 <template>
-    <div>addDtaa</div>
+    <div>{{aData}}</div>
 </template>
 
 <script>
     export default {
         name: "addData",
-        props
+        props:['addDatas'],
+        watch:{
+            addDatas(){
+                this.aData=this.value;
+            }
+        },
+        data(){
+            return {
+                aData:'',
+            }
+        }
     }
 </script>
 
