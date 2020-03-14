@@ -4,7 +4,8 @@
 
 <script>
     export default {
-        name: "addData"
+        name: "addData",
+        props
     }
 </script>
 
