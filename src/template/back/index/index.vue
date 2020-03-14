@@ -1,10 +1,17 @@
 <template>
-    <div>index</div>
+    <div>index
+        <addData/>
+
+    </div>
 </template>
 
 <script>
+    import addData from '@/template/back/assembly/addData'
     export default {
-        name: "audit"
+        name: "index",
+        components: {
+            addData
+        },
     }
 </script>
 
