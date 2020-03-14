@@ -1,5 +1,5 @@
 <template>
-    <div>audit</div>
+    <div>index</div>
 </template>
 
 <script>

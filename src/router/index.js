@@ -8,6 +8,7 @@ import Info from '@/template/front/information/info'
 import Appraise from '@/template/front/information/appraise'
 import Audit from '@/template/back/config/audit'
 import Page from '@/template/back/config/page'
+import BackIndex from '@/template/back/index/index'
 
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
@@ -100,6 +101,11 @@ const router = new Router({
                 requireAuth: true
             },
             children:[
+                {
+                    path: "/Back/",
+                    name: "BackIndex",
+                    component: BackIndex
+                },
                 {
                     path: "/Back/Audit",
                     name: "Audit",
