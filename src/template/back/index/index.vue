@@ -1,5 +1,71 @@
 <template>
-    <div>
+    <div class="sys_index">
+        <el-row>
+            <el-col :span="8" class="pd_10">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新消息</span>
+                    </div>
+                    <div class="text item">
+                        登录名称：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                     <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        
+                    </div>
+                </el-card>
+            </el-col>
+              <el-col :span="16" class="pd_10">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新留言</span>
+                    </div>
+                    <div class="text item">
+                        登录名称：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                     <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        
+                    </div>
+                </el-card>
+            </el-col>
+
+
+        </el-row>
         <input v-model="keyData"  />
         <addData :addDatas='keyData'/>
 
@@ -13,6 +79,7 @@
         data(){
             return {
                 keyData:'dsasda',
+                admin:window.localStorage.getItem('username')
             }
            
         },
@@ -22,6 +89,8 @@
     }
 </script>
 
-<style scoped>
+<style>
+.sys_index{ text-align: left;}
+.pd_10 { box-sizing: border-box; padding: 10px;}
 
 </style>
