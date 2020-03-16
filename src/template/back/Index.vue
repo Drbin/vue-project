@@ -1,5 +1,8 @@
 <template>
     <div>
+        <el-row class="back_title">
+            信息管理
+        </el-row>
         <el-row class="tac">
             <el-col :span="3">
                 <el-menu default-active="2" class="el-menu-vertical-demo menu_left">
@@ -49,6 +52,7 @@
 </script>
 
 <style>
+.back_title{ height: 70px; line-height: 70px; padding: 0 30px; box-sizing: border-box; border-bottom: 1px solid #e6e6e6;}
 .menu_left .el-menu-item-group__title{display: none;}
 .menu_left a{ display: block; text-decoration: none; color: #666;}
 .menu_left .is-active>a{ color: #409EFF;}
