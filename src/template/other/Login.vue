@@ -71,6 +71,7 @@
                     return false;
                 }else{
                     sessionStorage.setItem("token", 'true');
+                    window.localStorage.setItem("username",this.username)
                     this.$router.push({path:'/Back/'});
                     return  false
                 }
