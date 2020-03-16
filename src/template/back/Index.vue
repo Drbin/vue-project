@@ -1,7 +1,13 @@
 <template>
     <div>
         <el-row class="back_title">
-            信息管理
+            <h1>
+                信息管理
+            </h1>
+            <div class="login_out">
+                 <i class="el-icon-user-solid"></i>
+                <span> 欢迎您！{{admin}}</span>
+            </div>
         </el-row>
         <el-row class="tac">
             <el-col :span="3">
@@ -47,12 +53,19 @@
 <script>
     export default {
         name: "Index",
+        data(){
+            return{
+                admin:'admin'
+            }
+        }
 
     }
 </script>
 
 <style>
-.back_title{ height: 70px; line-height: 70px; padding: 0 30px; box-sizing: border-box; border-bottom: 1px solid #e6e6e6;}
+.back_title{ height: 70px; line-height: 70px; padding: 0 30px; box-sizing: border-box; border-bottom: 1px solid #e6e6e6; text-align: left; font: 28px;}
+.back_title h1{ width: 200px; height: 70px; line-height: 70px; float: left; margin-left: 100px; color: #409EFF; text-shadow: 0  0 5px #000;}
+.login_out {width: 200px; height: 70px; line-height: 70px; text-align: right; float: right;font-size: 22px; margin-right: 50px; }
 .menu_left .el-menu-item-group__title{display: none;}
 .menu_left a{ display: block; text-decoration: none; color: #666;}
 .menu_left .is-active>a{ color: #409EFF;}
