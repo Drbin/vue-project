@@ -1,19 +1,35 @@
 <template>
-    <div>{{addDatas}}</div>
+    <div>{{sendArr}}</div>
 </template>
 
 <script>
     export default {
         name: "addData",
-        props:['addDatas'],
-        watch:{
-            addDatas(){
-                this.aData=this.value;
+        props:{
+            'addDatas':{
+                type:String,
+                default:function(){
+                    return ''
+                }
             }
+        },
+     
+        mounted(){
+            this.aData=this.addDatas
+        },
+        watch:{
+            addDatas:{
+                handler(newVal){
+                    window.console.log(newVal)
+                    this.sendArr=newVal
+                },
+                deep:true
+            }
+
         },
         data(){
             return {
-                aData:'',
+                sendArr:this.addDatas,
             }
         }
     }
