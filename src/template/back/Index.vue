@@ -56,11 +56,10 @@
         name: "Index",
         data(){
             return{
-                admin:'admin'
+                admin:  window.localStorage.getItem("username")
             }
         },
         methods:{
-           
             exitLogin(){
                 this.$confirm('此操作将退出系统, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -71,8 +70,7 @@
                         type: 'info',
                         message: '已退出'
                     });  
-                    window.localStorage.removeItem("timestamp")
-                    window.localStorage.removeItem("tel");
+                    window.localStorage.removeItem("username");
                     sessionStorage.removeItem("token");
                     this.$router.push({path:'/Login'});
                
@@ -92,7 +90,7 @@
 <style>
 .back_title{ height: 70px; line-height: 70px; padding: 0 30px; box-sizing: border-box; border-bottom: 1px solid #e6e6e6; text-align: left; font: 28px;}
 .back_title h1{ width: 200px; height: 70px; line-height: 70px; float: left; margin-left: 100px; color: #409EFF; text-shadow: 0  0 5px #000;}
-.login_out {width: 200px; height: 70px; line-height: 70px; text-align: right; float: right;font-size: 16px; margin-right: 50px; }
+.login_out {width: 500px; height: 70px; line-height: 70px; text-align: right; float: right;font-size: 16px; margin-right: 50px; }
 .login_out i{ font-size: 22px;}
 .login_out span{ color: red;}
 .login_out a{ text-decoration: none; color: #409EFF; }

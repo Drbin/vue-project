@@ -72,6 +72,10 @@
                 }else{
                     sessionStorage.setItem("token", 'true');
                     window.localStorage.setItem("username",this.username)
+                    this.$message({
+                        type: 'success',
+                        message: '登录成功'
+                    }); 
                     this.$router.push({path:'/Back/'});
                     return  false
                 }
