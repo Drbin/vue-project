@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input v-model="keyData" :addDatas='keyData' />
-        <addData/>
+        <input v-model="keyData"  />
+        <addData :addDatas='keyData'/>
 
     </div>
 </template>

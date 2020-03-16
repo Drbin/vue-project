@@ -6,7 +6,7 @@
     export default {
         name: "addData",
         props:{
-            'addDatas':{
+            addDatas:{
                 type:String,
                 default:function(){
                     return ''
