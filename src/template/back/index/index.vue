@@ -66,8 +66,80 @@
 
 
         </el-row>
-        <input v-model="keyData"  />
-        <addData :addDatas='keyData'/>
+        <el-row>
+            <el-col :span='8' class="pd_10">
+                 <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新留言</span>
+                    </div>
+                    <div class="text item">
+                        登录名称：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                     <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        
+                    </div>
+                </el-card>
+            </el-col>
+               <el-col :span='8' class="pd_10">
+                 <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新留言</span>
+                    </div>
+                    <div class="text item">
+                        登录名称：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                     <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div> <div class="text item">
+                        登录时间：{{admin}}
+                    
+                    </div>
+                    <div class="text item">
+                        
+                    </div>
+                </el-card>
+            </el-col>
+               <el-col :span='8' class="pd_10">
+                 <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新留言</span>
+                    </div>
+                    <addData :addDatas='keyData'/>
+                </el-card>
+            </el-col>
+        </el-row>
+       
+       
 
     </div>
 </template>
