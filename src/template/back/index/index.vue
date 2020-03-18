@@ -137,10 +137,19 @@
                     <addData :addDatas='keyData'/>
                 </el-card>
             </el-col>
+            <el-col :span="24" class="pd_10">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>最新留言</span>
+                    </div>
+                    <div class="text item" >
+                        登录名称：{{admin}}
+                    
+                    </div>
+                 
+                </el-card>
+            </el-col>
         </el-row>
-       
-       
-
     </div>
 </template>
 
