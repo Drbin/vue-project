@@ -143,7 +143,8 @@
                         <span>最新留言</span>
                     </div>
                     <div class="text item" >
-                        登录名称：{{admin}}
+                        <audio src="https://www.w3school.com.cn/i/song.ogg" preload="auto" controls loop hidden="true">
+                        </audio>
                     
                     </div>
                  
