@@ -1,5 +1,12 @@
 <template>
     <div class="sys_index">
+        <el-row class="b_line">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item>首页</el-breadcrumb-item>
+                <el-breadcrumb-item>系统主页</el-breadcrumb-item>
+            </el-breadcrumb>
+        </el-row>
+
         <el-row>
             <el-col :span="8" class="pd_10">
                 <el-card class="box-card">
@@ -173,6 +180,7 @@
 
 <style>
 .sys_index{ text-align: left;}
+.b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 .pd_10 { box-sizing: border-box; padding: 10px;}
 
 </style>
