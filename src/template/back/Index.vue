@@ -94,6 +94,7 @@
 .login_out i{ font-size: 22px;}
 .login_out span{ color: red;}
 .login_out a{ text-decoration: none; color: #409EFF; }
+.b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 
 .menu_left .el-menu-item-group__title{display: none;}
 .menu_left a{ display: block; text-decoration: none; color: #666;}
