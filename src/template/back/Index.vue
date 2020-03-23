@@ -95,7 +95,7 @@
 .login_out span{ color: red;}
 .login_out a{ text-decoration: none; color: #409EFF; }
 .b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
-
+.pd_50{ padding: 50px;}
 .menu_left .el-menu-item-group__title{display: none;}
 .menu_left a{ display: block; text-decoration: none; color: #666;}
 .menu_left .is-active>a{ color: #409EFF;}
