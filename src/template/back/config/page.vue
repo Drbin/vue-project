@@ -7,11 +7,11 @@
                 <el-breadcrumb-item>页面管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
-        <el-row>
-            <el-col :span="3">
+        <el-row class="query_box">
+            <el-col :span="3" class="query_box_tit">
                 页面名称：
             </el-col>
-            <el-col :span="5">
+            <el-col :span="5" class="query_box_search">
                 <el-input
                 size="small"
                 placeholder="请输入内容"

@@ -96,6 +96,8 @@
 .login_out a{ text-decoration: none; color: #409EFF; }
 .b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 .pd_50{ padding: 50px;}
+.query_box{ padding: 10px 0;}
+.query_box .query_box_tit{ height: 32px; line-height: 32px; text-align: right;}
 .menu_left .el-menu-item-group__title{display: none;}
 .menu_left a{ display: block; text-decoration: none; color: #666;}
 .menu_left .is-active>a{ color: #409EFF;}
