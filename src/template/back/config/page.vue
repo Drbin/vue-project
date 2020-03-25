@@ -8,10 +8,10 @@
             </el-breadcrumb>
         </el-row>
         <el-row class="query_box">
-            <el-col :span="3" class="query_box_tit">
+            <el-col :span="2" class="query_box_tit">
                 页面名称：
             </el-col>
-            <el-col :span="5" class="query_box_search">
+            <el-col :span="6" class="query_box_search">
                 <el-input
                 size="small"
                 placeholder="请输入内容"
@@ -20,7 +20,7 @@
                 </el-input>
             </el-col>
         </el-row>
-        <el-row class="pd_50">
+        <el-row class="pd_50 table_list">
             <el-table
                 :data="tableData"
                 border
@@ -41,11 +41,16 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <el-row>
+        <el-row class="pagi_bot">
+            <div class="pagi_bot_l">
+                共{{total}}条
+            </div>
             <el-pagination
+                class="pagi_bot_r"
+                page-size='12'
                 background
                 layout="prev, pager, next"
-                :total="1000">
+                :total="total">
             </el-pagination>
         </el-row>
     </div>
@@ -57,6 +62,7 @@
         data(){
             return {
                 pageTit:'',
+                total:100,
                 tableData: [{
                     date: '2016-05-02',
                     name: '王小虎',
@@ -65,6 +71,38 @@
                     date: '2016-05-04',
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
                 }, {
                     date: '2016-05-01',
                     name: '王小虎',

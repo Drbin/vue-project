@@ -95,7 +95,11 @@
 .login_out span{ color: red;}
 .login_out a{ text-decoration: none; color: #409EFF; }
 .b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
-.pd_50{ padding: 50px;}
+.pd_50{ padding:10px 50px;}
+.table_list{height: 650px;}
+.pagi_bot{ margin-top:20px; padding: 0 50px; box-sizing: border-box; }
+.pagi_bot .pagi_bot_l{ float: left; width: 300px; height: 32px; line-height: 32px; text-align: left; } 
+.pagi_bot .pagi_bot_r{ float: right;}
 .query_box{ padding: 10px 0;}
 .query_box .query_box_tit{ height: 32px; line-height: 32px; text-align: right;}
 .menu_left .el-menu-item-group__title{display: none;}
