@@ -40,7 +40,13 @@
                     label="地址">
                 </el-table-column>
             </el-table>
-
+        </el-row>
+        <el-row>
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="1000">
+            </el-pagination>
         </el-row>
     </div>
 </template>
