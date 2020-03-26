@@ -30,15 +30,17 @@
                     label="页面名称"
                     width="180">
                 </el-table-column>
-                <el-table-column
+                  <el-table-column
                     prop="name"
-                    label="页面url"
+                    label="是否展示"
                     width="180">
                 </el-table-column>
                 <el-table-column
                     prop="address"
-                    label="地址">
+                    label="页面url"
+                   >
                 </el-table-column>
+              
             </el-table>
         </el-row>
         <el-row class="pagi_bot">
