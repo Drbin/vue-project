@@ -7,7 +7,7 @@
                 <el-breadcrumb-item>权限管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
-            <el-row class="query_box">
+        <el-row class="query_box">
             <el-col :span="2" class="query_box_tit">
                 角色名称：
             </el-col>
@@ -20,6 +20,29 @@
                 </el-input>
             </el-col>
         </el-row>
+        <el-row class="pd_50 table_list">
+            <el-table
+                :data="tableData"
+                border
+                style="width: 100%">
+                <el-table-column
+                    prop="date"
+                    label="页面名称"
+                    width="180">
+                </el-table-column>
+                  <el-table-column
+                    prop="name"
+                    label="是否展示"
+                    width="180">
+                </el-table-column>
+                <el-table-column
+                    prop="address"
+                    label="页面url"
+                   >
+                </el-table-column>
+              
+            </el-table>
+        </el-row>
     </div>
 </template>
 
@@ -28,7 +51,56 @@
         name: "audit",
         data(){
             return{
-                auditTit:''
+                auditTit:'',
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }]
             }
         }
     }
