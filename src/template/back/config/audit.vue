@@ -15,7 +15,7 @@
                 <el-input
                 size="small"
                 placeholder="请输入角色名称"
-                v-model="pageTit"
+                v-model="auditTit"
                 clearable>
                 </el-input>
             </el-col>
@@ -25,7 +25,12 @@
 
 <script>
     export default {
-        name: "audit"
+        name: "audit",
+        data(){
+            return{
+                auditTit:''
+            }
+        }
     }
 </script>
 
