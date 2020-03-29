@@ -43,6 +43,18 @@
               
             </el-table>
         </el-row>
+        <el-row class="pagi_bot">
+            <div class="pagi_bot_l">
+                共{{total}}条
+            </div>
+            <el-pagination
+                class="pagi_bot_r"
+                page-size='12'
+                background
+                layout="prev, pager, next"
+                :total="total">
+            </el-pagination>
+        </el-row>
     </div>
 </template>
 
@@ -52,6 +64,7 @@
         data(){
             return{
                 auditTit:'',
+                total:100,
                 tableData: [{
                     date: '2016-05-02',
                     name: '王小虎',
