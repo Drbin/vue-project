@@ -4,7 +4,7 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>首页</el-breadcrumb-item>
                 <el-breadcrumb-item>配置管理</el-breadcrumb-item>
-                <el-breadcrumb-item>权限管理</el-breadcrumb-item>
+                <el-breadcrumb-item>日志管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
         <el-row class="query_box">

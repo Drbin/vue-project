@@ -27,7 +27,7 @@
                 style="width: 100%">
                 <el-table-column
                     prop="date"
-                    label="页面名称"
+                    label="角色名称"
                     width="180">
                 </el-table-column>
                   <el-table-column
