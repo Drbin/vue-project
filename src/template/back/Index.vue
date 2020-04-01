@@ -10,7 +10,7 @@
                         </template>
                         <el-menu-item-group>
                             <template slot="title">分组一</template>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-1"><router-link to="/Back/Audit"></router-link></el-menu-item>
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
                         <el-menu-item-group title="分组2">
@@ -38,9 +38,7 @@
             <el-col :span="16">
                 <router-view></router-view>
             </el-col>
-
         </el-row>
-
     </div>
 </template>
 
