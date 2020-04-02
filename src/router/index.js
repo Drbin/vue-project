@@ -105,22 +105,34 @@ const router = new Router({
                 {
                     path: "/Back/",
                     name: "BackIndex",
-                    component: BackIndex
+                    component: BackIndex,
+                    meta:{
+                        requireAuth: true
+                    },
                 },
                 {
                     path: "/Back/Audit",
                     name: "Audit",
-                    component: Audit
+                    component: Audit,
+                    meta:{
+                        requireAuth: true
+                    },
                 },
                 {
                     path: "/Back/Page",
                     name: "Page",
-                    component: Page
+                    component: Page,
+                    meta:{
+                        requireAuth: true
+                    },
                 },
                 {
                     path: "/Back/Role",
                     name: "Role",
-                    component: Role
+                    component: Role,
+                    meta:{
+                        requireAuth: true
+                    },
                 },
             ]
         },
