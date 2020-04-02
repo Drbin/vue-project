@@ -11,6 +11,7 @@ import Page from '@/template/back/config/page'
 import Role from '@/template/back/config/role'
 import BackIndex from '@/template/back/index/index'
 import Consumer from '@/template/back/config/consumer'
+import Picture from '@/template/back/picture/picture'
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
 import Tickets from '@/template/front/tickets/Index'
@@ -138,6 +139,14 @@ const router = new Router({
                     path: "/Back/Consumer",
                     name: "Consumer",
                     component: Consumer,
+                    meta:{
+                        requireAuth: true
+                    },
+                },
+                {
+                    path: "/Back/Picture",
+                    name: "Picture",
+                    component: Picture,
                     meta:{
                         requireAuth: true
                     },
