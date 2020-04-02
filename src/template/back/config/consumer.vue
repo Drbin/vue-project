@@ -9,7 +9,7 @@
         </el-row>
         <el-row class="query_box">
             <el-col :span="2" class="query_box_tit">
-                操作类型：
+                用户角色：
             </el-col>
             <el-col :span="6" class="query_box_search">
                 <el-input
