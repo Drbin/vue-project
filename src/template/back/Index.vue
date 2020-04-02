@@ -30,6 +30,7 @@
                             <el-menu-item index="1-1"><router-link to="/Back/Audit">&nbsp;日志管理</router-link></el-menu-item>
                             <el-menu-item index="1-2"><router-link to="/Back/Page">&nbsp;页面管理</router-link></el-menu-item>
                             <el-menu-item index="1-3"><router-link to="/Back/Role">&nbsp;角色管理</router-link></el-menu-item>
+                            <el-menu-item index="1-3"><router-link to="/Back/Role">&nbsp;用户管理</router-link></el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                   

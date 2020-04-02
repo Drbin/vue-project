@@ -180,7 +180,6 @@
 
 <style>
 .sys_index{ text-align: left;}
-.b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 .pd_10 { box-sizing: border-box; padding: 10px;}
 
 </style>
