@@ -10,7 +10,7 @@ import Audit from '@/template/back/config/audit'
 import Page from '@/template/back/config/page'
 import Role from '@/template/back/config/role'
 import BackIndex from '@/template/back/index/index'
-
+import Consumer from '@/template/back/config/consumer'
 import Person from '@/template/front/person/Index'
 import Vote from '@/template/front/vote/Index'
 import Tickets from '@/template/front/tickets/Index'
@@ -130,6 +130,14 @@ const router = new Router({
                     path: "/Back/Role",
                     name: "Role",
                     component: Role,
+                    meta:{
+                        requireAuth: true
+                    },
+                },
+                {
+                    path: "/Back/Consumer",
+                    name: "Consumer",
+                    component: Consumer,
                     meta:{
                         requireAuth: true
                     },
