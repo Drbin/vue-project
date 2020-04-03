@@ -39,9 +39,9 @@
                         <span slot="title">文章管理</span>
                     </el-menu-item>
                     <el-menu-item index="4">
-                        <router-link to="/Back/Picture">
+                        <router-link slot="title" to="/Back/Picture">
                             <i class="el-icon-picture-outline"></i>
-                            <span slot="title">图片管理</span>
+                            <span>图片管理</span>
                         </router-link>
                     </el-menu-item>
                 </el-menu>
@@ -100,6 +100,7 @@
 .login_out a{ text-decoration: none; color: #409EFF; }
 .b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 .pd_50{ padding:10px 50px;}
+.pd_10{ padding: 10px;}
 .table_list{height: 650px;}
 .pagi_bot{ margin-top:20px; padding: 0 50px; box-sizing: border-box; }
 .pagi_bot .pagi_bot_l{ float: left; width: 300px; height: 32px; line-height: 32px; text-align: left; } 
