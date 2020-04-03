@@ -39,8 +39,10 @@
                         <span slot="title">文章管理</span>
                     </el-menu-item>
                     <el-menu-item index="4">
-                        <i class="el-icon-picture-outline"></i>
-                        <span slot="title">图片管理</span>
+                        <router-link to="/Back/Picture">
+                            <i class="el-icon-picture-outline"></i>
+                            <span slot="title">图片管理</span>
+                        </router-link>
                     </el-menu-item>
                 </el-menu>
             </el-col>
