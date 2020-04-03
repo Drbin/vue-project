@@ -30,7 +30,7 @@
                             <el-menu-item index="1-1"><router-link to="/Back/Audit">&nbsp;日志管理</router-link></el-menu-item>
                             <el-menu-item index="1-2"><router-link to="/Back/Page">&nbsp;页面管理</router-link></el-menu-item>
                             <el-menu-item index="1-3"><router-link to="/Back/Role">&nbsp;角色管理</router-link></el-menu-item>
-                            <el-menu-item index="1-3"><router-link to="/Back/Role">&nbsp;用户管理</router-link></el-menu-item>
+                            <el-menu-item index="1-3"><router-link to="/Back/Consumer">&nbsp;用户管理</router-link></el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                   
@@ -39,8 +39,8 @@
                         <span slot="title">文章管理</span>
                     </el-menu-item>
                     <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">导航四</span>
+                        <i class="el-icon-picture-outline"></i>
+                        <span slot="title">图片管理</span>
                     </el-menu-item>
                 </el-menu>
             </el-col>
