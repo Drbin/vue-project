@@ -21,13 +21,31 @@
                 </el-card>
             </el-col>
         </el-row>
+        <el-row class="pagi_bot">
+            <div class="pagi_bot_l">
+                共{{total}}条
+            </div>
+            <el-pagination
+                class="pagi_bot_r"
+                page-size=12
+                background
+                layout="prev, pager, next"
+                :total="total">
+            </el-pagination>
+        </el-row>
     </div>
 
 </template>
 
 <script>
     export default {
-        name: "picture",
+        name: "Picture",
+        data(){
+            return {
+                total:100,
+
+            }
+        },
         methods: {
 
         }
