@@ -6,6 +6,9 @@
                 <el-breadcrumb-item>文章管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
+        <el-row class="pd_50 table_list">
+
+        </el-row>
         <el-row class="query_box">
             <el-col :span="2" class="query_box_tit">
                 文章名称：
