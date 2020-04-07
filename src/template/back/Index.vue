@@ -35,8 +35,11 @@
                     </el-submenu>
                   
                     <el-menu-item index="3" >
-                        <i class="el-icon-document"></i>
-                        <span slot="title">文章管理</span>
+                        <router-link to="/Back/Article"  slot="title">
+                            <i class="el-icon-document"></i>
+                            <span>文章管理</span>
+                        </router-link>
+                       
                     </el-menu-item>
                     <el-menu-item index="4">
                         <router-link slot="title" to="/Back/Picture">
