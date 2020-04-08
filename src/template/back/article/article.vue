@@ -20,9 +20,8 @@
                 </el-input>
             </el-col>
             <el-col :span="2">
-                <router-link>
-                      <el-button type="primary" size="small">主要按钮</el-button>
-
+                <router-link to="/Back/addArt">
+                    <el-button type="primary" size="small">主要按钮</el-button>
                 </router-link>
             </el-col>
         </el-row>
