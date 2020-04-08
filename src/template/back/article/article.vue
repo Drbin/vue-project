@@ -6,14 +6,12 @@
                 <el-breadcrumb-item>文章管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
-        <el-row class="pd_50 table_list">
-
-        </el-row>
+    
         <el-row class="query_box">
             <el-col :span="2" class="query_box_tit">
                 文章名称：
             </el-col>
-            <el-col :span="6" class="query_box_search">
+            <el-col :span="4" class="query_box_search">
                 <el-input
                 size="small"
                 placeholder="请输入角色名称"
@@ -21,6 +19,15 @@
                 clearable>
                 </el-input>
             </el-col>
+            <el-col :span="2">
+                <router-link>
+                      <el-button type="primary" size="small">主要按钮</el-button>
+
+                </router-link>
+            </el-col>
+        </el-row>
+        <el-row class="pd_50 table_list">
+
         </el-row>
         <el-row class="pagi_bot">
             <div class="pagi_bot_l">
