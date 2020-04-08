@@ -14,14 +14,17 @@
             <el-col :span="4" class="query_box_search">
                 <el-input
                 size="small"
-                placeholder="请输入角色名称"
+                placeholder="请输入文章名称"
                 v-model="auditTit"
                 clearable>
                 </el-input>
             </el-col>
-            <el-col :span="2">
+              <el-col :span="1" style="height:10px">
+               
+            </el-col>
+            <el-col :span="1">
                 <router-link to="/Back/addArt">
-                    <el-button type="primary" size="small">主要按钮</el-button>
+                    <el-button type="primary" size="small">新增文章</el-button>
                 </router-link>
             </el-col>
         </el-row>
