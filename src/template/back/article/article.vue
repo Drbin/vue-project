@@ -27,7 +27,7 @@
             </el-col>
             <el-col :span="1">
                 <router-link to="/Back/addArt">
-                    <el-button type="success" size="small">新增文章</el-button>
+                    <el-button type="primary" size="small">新增文章</el-button>
                 </router-link>
             </el-col>
         </el-row>
