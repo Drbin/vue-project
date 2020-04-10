@@ -7,6 +7,18 @@
                 <el-breadcrumb-item>新增文章</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
+        <el-row>
+            <el-col :span="2">
+                文章名称：
+            </el-col>
+            <el-col :span="5">
+                <el-input
+                    placeholder="请输入内容"
+                    v-model="artTit"
+                    clearable>
+                </el-input>
+            </el-col>
+        </el-row>
         
     </div>
 
@@ -15,6 +27,11 @@
 <script>
     export default {
         name: "About",
+        data(){
+            return{
+                artTit:'',
+            }
+        },
         methods: {
 
         }
