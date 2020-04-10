@@ -1,15 +1,13 @@
 <template>
     <div>
-        <div class="top">
-            <router-link to="/" exact>首页</router-link>
-            <router-link to="/Person" >个人信息</router-link>
-            <router-link to="/information" >影片信息</router-link>
-            <router-link to="/tickets" >购票信息</router-link>
-        </div>
-
-        <div class="main">
-            <router-view ></router-view>
-        </div>
+         <el-row class="b_line">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item>首页</el-breadcrumb-item>
+                <el-breadcrumb-item>文章管理</el-breadcrumb-item>
+                <el-breadcrumb-item>新增文章</el-breadcrumb-item>
+            </el-breadcrumb>
+        </el-row>
+        
     </div>
 
 </template>
