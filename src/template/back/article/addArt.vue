@@ -7,13 +7,14 @@
                 <el-breadcrumb-item>新增文章</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
-        <el-row>
-            <el-col :span="2">
+        <el-row class="mt_5">
+            <el-col :span="2" class="line_32">
                 文章名称：
             </el-col>
             <el-col :span="5">
                 <el-input
                     placeholder="请输入内容"
+                    size="small"
                     v-model="artTit"
                     clearable>
                 </el-input>

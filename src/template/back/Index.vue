@@ -100,6 +100,8 @@
 .login_out {width: 500px; height: 70px; line-height: 70px; text-align: right; float: right;font-size: 16px; margin-right: 50px; }
 .login_out i{ font-size: 22px;}
 .login_out span{ color: red;}
+.line_32{ line-height: 32px; text-align: right;}
+.mt_15{margin-top: 15px;;}
 .login_out a{ text-decoration: none; color: #409EFF; }
 .b_line{ width: 100%; padding: 17px 30px; box-sizing: border-box; border-bottom:1px solid #e6e6e6 ;}
 .pd_50{ padding:10px 50px;}
