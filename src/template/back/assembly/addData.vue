@@ -13,7 +13,6 @@
                 }
             }
         },
-     
         mounted(){
             this.aData=this.addDatas
         },

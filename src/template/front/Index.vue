@@ -28,6 +28,7 @@
         height: 70px;
         line-height: 70px;
         left: 0;
+        text-align: center;
         top:0;
         width: 100%;
         box-shadow: 0 0 12px #ccc;
