@@ -6,6 +6,31 @@
                 <el-breadcrumb-item>图片管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
+            
+        <el-row class="query_box">
+            <el-col :span="2" class="query_box_tit">
+                图片名称：
+            </el-col>
+            <el-col :span="4" class="query_box_search">
+                <el-input
+                size="small"
+                placeholder="请输入图片名称"
+                v-model="auditTit"
+                clearable>
+                </el-input>
+            </el-col>
+              <el-col :span="1" style="height:10px">
+               
+            </el-col>
+             <el-col :span="1">
+                <el-button type="success" size="small">搜索</el-button>
+            </el-col>
+            <el-col :span="1">
+                <router-link to="/Back/addArt">
+                    <el-button type="primary" size="small">新增文章</el-button>
+                </router-link>
+            </el-col>
+        </el-row>
         <el-row>
             <el-col :span="4" v-for="i in 12" :key="i" class="pd_10 height_fixed" >
                 <el-card :body-style="{ padding: '0px' }">
