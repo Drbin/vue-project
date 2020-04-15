@@ -35,6 +35,19 @@
                 </el-upload>
             </el-col>
         </el-row>
+        <el-row class="mt_15">
+            <el-col :span="2" class="line_32">
+                图片描述：
+            </el-col>
+            <el-col :span="5">
+                <el-input
+                    placeholder="请输入图片描述"
+                    size="small"
+                    v-model="artTit"
+                    clearable>
+                </el-input>
+            </el-col>
+        </el-row>
     </div>
 
 </template>
@@ -44,7 +57,8 @@
         name: "Picture",
         data() {
             return {
-                imageUrl: ''
+                imageUrl: '',
+                artTit:''
             };
         },
         methods: {
@@ -65,4 +79,27 @@
 
 <style>
     .height_fixed img{ width: 100%; height: 265px; }
+    .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>
