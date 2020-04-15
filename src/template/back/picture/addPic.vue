@@ -14,7 +14,7 @@
                 <el-input
                     placeholder="请输入内容"
                     size="small"
-                    v-model="artTit"
+                    v-model="picTit"
                     clearable>
                 </el-input>
             </el-col>
@@ -43,7 +43,7 @@
                 <el-input
                     placeholder="请输入图片描述"
                     size="small"
-                    v-model="artTit"
+                    v-model="picDesc"
                     clearable>
                 </el-input>
             </el-col>
@@ -58,7 +58,9 @@
         data() {
             return {
                 imageUrl: '',
-                artTit:''
+                picTit:'',
+                picDesc:''
+
             };
         },
         methods: {
@@ -66,12 +68,11 @@
                 this.imageUrl = URL.createObjectURL(file.raw);
             },
             beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
                 const isLt2M = file.size / 1024 / 1024 < 2;
                 if (!isLt2M) {
                     this.$message.error('上传头像图片大小不能超过 2MB!');
                 }
-                return isJPG && isLt2M;
+                return isLt2M;
             }
         }
     }
