@@ -15,12 +15,8 @@
                 <div class="grid-content">
                     <el-button type="primary">搜索</el-button>
                 </div>
-
             </el-col>
-         
         </el-row>
-
-
         <el-row>
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
