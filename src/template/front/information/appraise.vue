@@ -3,7 +3,7 @@
         <el-row>
             <el-col :span="3" class="line-height-1">
                 <div class="grid-content">
-                    影片名称：
+                    文章名称：
                 </div>
             </el-col>
             <el-col :span="6">
@@ -17,12 +17,7 @@
                 </div>
 
             </el-col>
-            <el-col :span="2">
-
-                <div class="grid-content">
-                    <el-button type="primary">新增</el-button>
-                </div>
-            </el-col>
+         
         </el-row>
 
 
@@ -33,9 +28,9 @@
                         <img src="https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=606020398,4176255487&fm=179&app=42&f=JPEG?w=121&h=140">
                     </div>
                     <div class="text-card">
-                        <h4>谁的名字 <span>(2019-1-29上映)</span></h4>
-                        <p>导演：新海诚</p>
-                        <p>主演：新海诚 宫水三叶 立花泷 奥寺美纪</p>
+                        <h4>谁的名字</h4>
+                        <p>时间：2019-1-29</p>
+                        <p>作者：admin</p>
                         <p>简介：《你的名字。》是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。是由新海诚执导，由神木隆之介、上白石萌音担任主要配音的一部原创日本动画电影  。作品于2016年8月26日在日本上映。中国内地于2016年12月2日上映。作品讲述了男女高中生在梦中相遇，并寻找彼此的故事。</p>
                         <div class="appraise">
                             <ul>
