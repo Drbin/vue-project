@@ -42,7 +42,7 @@
                                 <li><a>赞</a>(<span>100</span>)</li>
                                 <li><a>踩</a>(<span>100</span>)</li>
                                 <li><a><router-link to="/information/info">评价</router-link></a>(<span>100</span>)</li>
-                                <li><a>详情</a>(<span>100</span>)</li>
+                                <li><router-link to="information/msg">详情</router-link></li>
                             </ul>
                         </div>
                     </div>

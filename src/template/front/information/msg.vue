@@ -1,4 +1,5 @@
-<div class="block">
+<template>
+    <div class="block">
     <div class="radio">
         排序：
         <el-radio-group v-model="reverse">
@@ -16,6 +17,8 @@
         </el-timeline-item>
     </el-timeline>
 </div>
+</template>
+
 
 <script>
     export default {

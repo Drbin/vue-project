@@ -4,6 +4,7 @@ import Index from '@/template/front/Index'
 import IndexBase from '@/template/front/index/Index'
 import Back from '@/template/back/Index'
 import Information from '@/template/front/information/index'
+import InfoMsg from '@/template/front/information/msg'
 import Info from '@/template/front/information/info'
 import Appraise from '@/template/front/information/appraise'
 import Audit from '@/template/back/config/audit'
@@ -80,6 +81,11 @@ const router = new Router({
                             path:'/information/',
                             name:'Appraise',
                             component:Appraise,
+                        },
+                        {
+                            path:'/information/msg',
+                            name:'InfoMsg',
+                            component:InfoMsg,
                         },
                         {
                             path:'/information/info',
