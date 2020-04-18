@@ -1,22 +1,12 @@
 <template>
     <div class="block">
-    <div class="radio">
-        排序：
-        <el-radio-group v-model="reverse">
-            <el-radio :label="true">倒序</el-radio>
-            <el-radio :label="false">正序</el-radio>
-        </el-radio-group>
+        <h1 class="content_tit">新增文章</h1>
+        <div class="content_txt">
+            sad sdad asds asd as asd sdd dd s 
+        </div>
+        <div class="content_time"
     </div>
 
-    <el-timeline :reverse="reverse">
-        <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :timestamp="activity.timestamp">
-            {{activity.content}}
-        </el-timeline-item>
-    </el-timeline>
-</div>
 </template>
 
 
@@ -40,3 +30,6 @@
         }
     };
 </script>
+<style scoped>
+
+</style>
