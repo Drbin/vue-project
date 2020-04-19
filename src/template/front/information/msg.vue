@@ -22,8 +22,6 @@
                 uId:this.$route.query.userId,
                 contentTime:'2020-04-19',
                 content:''
-
-              
             };
         }
     };
