@@ -33,7 +33,7 @@
                                 <li><a>赞</a>(<span>100</span>)</li>
                                 <li><a>踩</a>(<span>100</span>)</li>
                                 <li><a><router-link to="/information/info">评价</router-link></a>(<span>100</span>)</li>
-                                <li><router-link :to="{ path: '/information/msg', params: { userId: 1111}}">详情</router-link></li>
+                                <li><router-link :to="{ path: '/information/msg', query: { userId: 1111}}">详情</router-link></li>
                             </ul>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
     <div class="block">
         <h1 class="content_tit">{{contentTit}}</h1>
         <div class="content_txt">
-           {{this.$route.params.userId}}
+           {{uId}}
 
         </div>
         <div class="content_author">{{contentAuthor}}</div>
@@ -19,6 +19,7 @@
             return {
                 contentTit:'新增文章',
                 contentAuthor:'admin',
+                uId:this.$route.query.userId,
                 contentTime:'2020-04-19',
                 content:''
 
