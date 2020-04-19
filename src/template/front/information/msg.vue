@@ -1,10 +1,11 @@
 <template>
     <div class="block">
-        <h1 class="content_tit">新增文章</h1>
+        <h1 class="content_tit">{{contentTit}}</h1>
         <div class="content_txt">
-            sad sdad asds asd as asd sdd dd s 
+           {{this.$route.params.userId}}
+
         </div>
-        <div class="content_author">{{author}}</div>
+        <div class="content_author">{{contentAuthor}}</div>
         <div class="content_time">2018-04-13</div>
     </div>
 
@@ -16,7 +17,11 @@
         name:'msg',
         data() {
             return {
-                author:'admin'
+                contentTit:'新增文章',
+                contentAuthor:'admin',
+                contentTime:'2020-04-19',
+                content:''
+
               
             };
         }
