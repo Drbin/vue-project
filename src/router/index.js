@@ -23,6 +23,7 @@ import PerIndex from '@/template/front/person/Temp'
 import PerAdd from '@/template/front/person/Add'
 import NotFound from '@/template/other/404'
 import Login from '@/template/other/Login'
+import Skill from '@/template/front/Skill/index'
 
 
 Vue.use(Router)
@@ -65,7 +66,28 @@ const router = new Router({
                     ]
 
                 },
+                {
+                    path:'/Skill/',
+                    name:'Skill',
+                    component:Skill,
 
+                    children:[
+                        {
+                            path:'/Skill/',
+                            name:'skillIndex',
+                            component:skillIndex,
+
+                        },
+                        {
+                            path:'/Person/add',
+                            name:'add',
+                            component:PerAdd,
+
+
+                        }
+                    ]
+
+                },
                 {
                     path:'/tickets',
                     name:'Tickets',
