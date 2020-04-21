@@ -18,6 +18,13 @@
             </el-col>
         </el-row>
         <el-row>
+            <el-tag>标签一</el-tag>
+            <el-tag type="info">标签三</el-tag>
+            <el-tag type="info">标签三</el-tag>
+            <el-tag type="info">标签三</el-tag>
+
+        </el-row>
+        <el-row>
             <el-col :span="24" class="line-height-1">
                 <div class="shadow-card">
                     <div class="img-box">
