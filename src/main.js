@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ElementUI,{ Col,Row,Upload,Button,Breadcrumb,BreadcrumbItem,Link,Radio,Card, RadioGroup, Timeline,TimelineItem,  Carousel,CarouselItem ,Submenu,MenuItem,MenuItemGroup,Menu,Input,Table,TableColumn} from 'element-ui'
+import ElementUI,{ Col,Row,Upload,Tag,Button,Breadcrumb,BreadcrumbItem,Link,Radio,Card, RadioGroup, Timeline,TimelineItem,  Carousel,CarouselItem ,Submenu,MenuItem,MenuItemGroup,Menu,Input,Table,TableColumn} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import axios from 'axios'
@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.component(Input.name, Input)
 Vue.component(Upload.name, Upload)
+Vue.component(Tag.name, Tag)
 Vue.component(Breadcrumb.name, Breadcrumb)
 Vue.component(BreadcrumbItem.name, BreadcrumbItem)
 Vue.component(Card.name, Card)
