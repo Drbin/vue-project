@@ -59,6 +59,7 @@
 
 <style scoped>
     .line-height-1{line-height: 40px;}
+    .el-tag{ margin-right: 10px; cursor: pointer;}
     .el-row{    margin-bottom: 20px;}
     .shadow-card{
         width:100%;
