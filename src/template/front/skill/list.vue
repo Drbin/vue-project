@@ -18,10 +18,8 @@
             </el-col>
         </el-row>
         <el-row>
-            <el-tag>标签一</el-tag>
-            <el-tag type="info">标签三</el-tag>
-            <el-tag type="info">标签三</el-tag>
-            <el-tag type="info">标签三</el-tag>
+            <el-radio v-model="radio" label="1">全部</el-radio>
+            <el-radio v-model="radio" label="2">备选项</el-radio>
 
         </el-row>
         <el-row>
@@ -54,6 +52,14 @@
 <script>
     export default {
         name: "Information",
+        data(){
+            return{
+                radio:"1"
+            }
+        },
+        methods:{
+            
+        }
     }
 </script>
 
