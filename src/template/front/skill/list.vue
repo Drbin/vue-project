@@ -18,8 +18,13 @@
             </el-col>
         </el-row>
         <el-row>
+            <el-col :span="2">分类</el-col>
             <el-radio v-model="radio" label="1">全部</el-radio>
-            <el-radio v-model="radio" label="2">备选项</el-radio>
+            <el-radio v-model="radio" label="2">前端</el-radio>
+            <el-radio v-model="radio" label="3">后端</el-radio>
+            <el-radio v-model="radio" label="4">数据库</el-radio>
+            <el-radio v-model="radio" label="5">图像处理</el-radio>
+            <el-radio v-model="radio" label="6">机器学习</el-radio>
 
         </el-row>
         <el-row>
