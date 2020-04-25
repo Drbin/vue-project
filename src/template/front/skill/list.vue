@@ -1,31 +1,17 @@
 <template>
     <div>
-        <el-row>
-            <el-col :span="3" class="line-height-1">
-                <div class="grid-content">
-                    文章名称：
-                </div>
-            </el-col>
-            <el-col :span="6">
-                <div class="grid-content ">
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </el-col>
-            <el-col :span="2">
-                <div class="grid-content">
-                    <el-button type="primary">搜索</el-button>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row>
-            <el-col :span="2">分类</el-col>
+  
+        <el-row class="top_query">
+            <el-col class="txt_14" :span="2">分类</el-col>
             <el-radio v-model="radio" label="1">全部</el-radio>
             <el-radio v-model="radio" label="2">前端</el-radio>
             <el-radio v-model="radio" label="3">后端</el-radio>
             <el-radio v-model="radio" label="4">数据库</el-radio>
             <el-radio v-model="radio" label="5">图像处理</el-radio>
             <el-radio v-model="radio" label="6">机器学习</el-radio>
-
+            <div class="top_search">
+                <input />
+            </div>
         </el-row>
         <el-row>
             <el-col :span="24" class="line-height-1">
@@ -72,6 +58,8 @@
     .line-height-1{line-height: 40px;}
     .el-tag{ margin-right: 10px; cursor: pointer;}
     .el-row{    margin-bottom: 20px;}
+    .top_query{ position: relative;  height: 30px; line-height: 30px;}
+
     .shadow-card{
         width:100%;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
