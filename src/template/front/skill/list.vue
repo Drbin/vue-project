@@ -10,7 +10,7 @@
             <el-radio v-model="radio" label="5">图像处理</el-radio>
             <el-radio v-model="radio" label="6">机器学习</el-radio>
             <div class="top_search">
-                <input />
+                <input placeholder="请输入搜索内容" />
                 <button><i class="el-icon-search"></i></button>
             </div>
         </el-row>
@@ -61,7 +61,8 @@
     .el-row{    margin-bottom: 20px;}
     .top_query{ position: relative;  height: 30px; line-height: 30px;}
     .top_search{ width: 200px; height: 30px; position: absolute;right: 0; top: 0;}
-    .top_search input{ width: 170px; height: 30px; border: 1px solid  #ccc; border-radius: 3px 0 0 3px; outline: none;}
+    .top_search input{ width: 170px; height: 30px; border: 1px solid  #ccc; box-sizing: border-box; float: left; border-radius: 3px 0 0 3px; outline: none; padding: 0 10px; }
+    .top_search button{ width: 30px; cursor: pointer; height: 30px; border: none; float: left; background: #409EFF; border: 1px solid  #409EFF; box-sizing: border-box;  color: #fff; border-radius: 0 3px 3px 0; outline: none; font-size: 18px;font-weight: 600;}
     .shadow-card{
         width:100%;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
