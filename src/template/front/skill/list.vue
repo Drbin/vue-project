@@ -59,6 +59,7 @@
     .el-tag{ margin-right: 10px; cursor: pointer;}
     .el-row{    margin-bottom: 20px;}
     .top_query{ position: relative;  height: 30px; line-height: 30px;}
+    .top_search{ width: 200px; height: 30px; position: absolute;right: 0; top: 0;}
 
     .shadow-card{
         width:100%;
