@@ -10,7 +10,7 @@
             <el-radio v-model="radio" label="5">图像处理</el-radio>
             <el-radio v-model="radio" label="6">机器学习</el-radio>
             <div class="top_search">
-                <input placeholder="请输入搜索内容" />
+                <input v-model="searchContent" placeholder="请输入搜索内容" />
                 <button><i class="el-icon-search"></i></button>
             </div>
         </el-row>
@@ -46,7 +46,8 @@
         name: "Information",
         data(){
             return{
-                radio:"1"
+                radio:"1",
+                searchContent:''
             }
         },
         methods:{
