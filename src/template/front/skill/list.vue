@@ -11,6 +11,7 @@
             <el-radio v-model="radio" label="6">机器学习</el-radio>
             <div class="top_search">
                 <input />
+                <button><i class="el-icon-search"></i></button>
             </div>
         </el-row>
         <el-row>
@@ -60,7 +61,7 @@
     .el-row{    margin-bottom: 20px;}
     .top_query{ position: relative;  height: 30px; line-height: 30px;}
     .top_search{ width: 200px; height: 30px; position: absolute;right: 0; top: 0;}
-
+    .top_search input{ width: 170px; height: 30px; border: 1px solid  #ccc; border-radius: 3px 0 0 3px; outline: none;}
     .shadow-card{
         width:100%;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
