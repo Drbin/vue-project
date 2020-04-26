@@ -2,7 +2,7 @@
     <div>
   
         <el-row class="top_query">
-            <el-col class="txt_14" :span="2">分类</el-col>
+            <span class="txt_w_60">分类：</span>
             <el-radio v-model="radio" label="1">全部</el-radio>
             <el-radio v-model="radio" label="2">前端</el-radio>
             <el-radio v-model="radio" label="3">后端</el-radio>
@@ -60,6 +60,7 @@
     .line-height-1{line-height: 40px;}
     .el-tag{ margin-right: 10px; cursor: pointer;}
     .el-row{    margin-bottom: 20px;}
+    .txt_w_60{ width: 60px; display: inline-block; text-align: center; font-size: 14px;}
     .top_query{ position: relative;  height: 30px; line-height: 30px;}
     .top_search{ width: 200px; height: 30px; position: absolute;right: 0; top: 0;}
     .top_search input{ width: 170px; height: 30px; border: 1px solid  #ccc; box-sizing: border-box; float: left; border-radius: 3px 0 0 3px; outline: none; padding: 0 10px; }
